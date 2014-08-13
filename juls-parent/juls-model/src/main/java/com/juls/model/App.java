@@ -1,4 +1,4 @@
-package org.juls.persist;
+package com.juls.model;
 
 /**
  * Hello world!

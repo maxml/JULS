@@ -1,4 +1,4 @@
-package org.juls.model;
+package com.juls.security;
 
 /**
  * Hello world!

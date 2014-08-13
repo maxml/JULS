@@ -1,4 +1,4 @@
-package org.juls.security;
+package com.juls.persist;
 
 /**
  * Hello world!
