@@ -43,3 +43,10 @@ local.properties
 # TeXlipse plugin
 .texlipse
 
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
