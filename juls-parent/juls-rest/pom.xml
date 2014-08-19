@@ -33,6 +33,11 @@
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
+      	<groupId>com.juls</groupId>
+        <artifactId>juls-persist</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.4.2</version>
@@ -56,9 +61,9 @@
     	<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <configuration>
+        <!-- <configuration>
             <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
+        </configuration>-->
     </plugin>
 	</plugins>
   </build>
