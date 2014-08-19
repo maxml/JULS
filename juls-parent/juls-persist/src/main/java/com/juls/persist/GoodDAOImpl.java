@@ -13,6 +13,7 @@ public class GoodDAOImpl implements IDAO<Good>{
 
 	private static SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
 	
+	@SuppressWarnings("unchecked")
 	public List<Good> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		List<Good> resultList;

@@ -6,19 +6,19 @@
 </head>
 <body>
 	<h3>Please, Sign In!</h3>
-	<form method="get" action="../../login/user">
+	<form method="post" action="../../login/user" enctype="x-www-form-urlencoded">
 		Email:
 		<br>
-		<input type="email" placeholder="Email">
+		<input name="email" type="email" placeholder="Email">
 		<br>
 		Password:
 		<br>
-		<input type="password" placeholder="Password">
+		<input name="password" type="password" placeholder="Password">
 		<br>
 		<input type="submit" value="Sign in">
-		<input id="reg" type="button" value="Sign up">
+		<input id="reg" onclick="location.href = 'reg.html'" type="button" value="Sign up">
 	</form>
 </body>
 <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="../js/reg.js"></script>
+
 </html>

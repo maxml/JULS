@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 
 import com.juls.model.User;
 
+
 public class UserDAOImpl implements IDAO<User>{
 	
 	private static SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
@@ -66,6 +67,21 @@ public class UserDAOImpl implements IDAO<User>{
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
 		User resultUser = (User) session.get(User.class, id);
+		tr.commit();
+		return resultUser;
+	}
+	
+	public User getByEmail(String email){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		Query query = session.createQuery("from User user WHERE user.email='"+email+"'");
+		User resultUser = null;
+		try{
+			resultUser = (User)query.list().get(0);
+		}
+		catch(Exception ex){
+			System.err.println(ex.getMessage());
+		}
 		tr.commit();
 		return resultUser;
 	}
