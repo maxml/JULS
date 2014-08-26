@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.juls.rest")
+@ComponentScan("com.juls")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Override

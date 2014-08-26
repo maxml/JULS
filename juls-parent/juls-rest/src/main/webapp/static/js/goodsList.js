@@ -17,5 +17,4 @@ function showGoods(JSON){
 		HTMLString += "<li><strong>ID:</strong> "+object["id"] + " <strong>NAME:</strong> " + object["name"] + " <strong>PRICE:</strong> " + object["price"]+"</li>";
 		
 	}
-	$('#goodsList').html(HTMLString);
 }
