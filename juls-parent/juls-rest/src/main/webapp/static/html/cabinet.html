@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JULS user cabinet</title>
+</head>
+<body>
+	<h3>Profile</h3>
+	<form method="post" action="../../user/update" enctype="x-www-form-urlencoded">
+		<strong>Email:</strong>
+		<input type="email" name="email" readonly></input>
+		<br>
+		<input type="email" name="newemail"></input>
+		<br>
+			<strong>Change password:</strong>
+		<br>
+			<input type="password" name="oldpassword" placeholder="Old password"></input>
+		<br>
+			<input type="password" name="newpassword1" placeholder="New password"></input>
+		<br>
+			<input type="password" name="newpassword2" placeholder="Repeat new password"></input>
+		<br>
+			<strong>First Name:</strong>
+			<input type="text" name="firstname" placeholder="Your first name"></input>
+		<br>
+			<strong>Last Name:</strong>
+			<input type="text" name="lastname" placeholder="Your last name"></input>
+		<br>
+			<strong>Address:</strong>
+			<input type="text" name="address" placeholder="Your address"></input>
+		<br>
+			<strong>Phone number:</strong>
+			<input type="text" name="phonenumber" placeholder="Your phone number"></input>
+		<br>
+			<input type="submit" value="Save"></input>
+	</form>
+</body>
+</html>
