@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	private User currentUser;
 	
-	@RequestMapping(value="/sessionTest", method= RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/curr", method=RequestMethod.GET, produces="application/json")
 	public @ResponseBody User getUser(){
 		return currentUser;
 	}
@@ -53,7 +53,7 @@ public class UserController {
 					currentUser.setAdditionalInfo(userDetails);
 					new UserDetailsDAOImpl().insert(userDetails);
 					new UserDAOImpl().update(currentUser);					
-					return "redirect: ../static/html/main.html";
+					return "redirect:" +  "../static/html/main.html";
 				}
 			}
 		}
