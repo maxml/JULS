@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.juls.model.User;
 import com.juls.persist.UserDAOImpl;
@@ -28,13 +29,10 @@ public class RegistrationController {
 	public String register(@ModelAttribute("userPrototype") UserEntityContainer userPrototype){
 		User currntUser = new User(userPrototype.getEmail(), userPrototype.getPassword());
 		if(new UserDAOImpl().insert(currntUser)){
-			/*ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
-			HttpSession session = attributes.getRequest().getSession();*/
 			currntUser.setId(currntUser.getId());
 			currntUser.setEmail(currntUser.getEmail());
 			currntUser.setPassword(currntUser.getPassword());
 			currntUser.setAdditionalInfo(currntUser.getAdditionalInfo());
-			//session.setAttribute("currentUser", currentUser);
 			return "redirect:" + "../static/html/main.html";
 		}
 		else{
