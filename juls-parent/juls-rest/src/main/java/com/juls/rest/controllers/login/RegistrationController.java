@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.juls.model.User;
 import com.juls.persist.UserDAOImpl;
@@ -27,14 +28,11 @@ public class RegistrationController {
 	@RequestMapping(value="/user", method=RequestMethod.POST, headers = "Accept=*/*", produces="application/json")
 	public String register(@ModelAttribute("userPrototype") UserEntityContainer userPrototype){
 		User currntUser = new User(userPrototype.getEmail(), userPrototype.getPassword());
-		if(new UserDAOImpl().insert(currentUser)){
-			/*ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
-			HttpSession session = attributes.getRequest().getSession();*/
+		if(new UserDAOImpl().insert(currntUser)){
 			currentUser.setId(currntUser.getId());
 			currentUser.setEmail(currntUser.getEmail());
 			currentUser.setPassword(currntUser.getPassword());
 			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
-			//session.setAttribute("currentUser", currentUser);
 			return "redirect:" + "../static/html/main.html";
 		}
 		else{
