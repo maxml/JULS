@@ -27,13 +27,13 @@ public class RegistrationController {
 	@RequestMapping(value="/user", method=RequestMethod.POST, headers = "Accept=*/*", produces="application/json")
 	public String register(@ModelAttribute("userPrototype") UserEntityContainer userPrototype){
 		User currntUser = new User(userPrototype.getEmail(), userPrototype.getPassword());
-		if(new UserDAOImpl().insert(currentUser)){
+		if(new UserDAOImpl().insert(currntUser)){
 			/*ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
 			HttpSession session = attributes.getRequest().getSession();*/
-			currentUser.setId(currntUser.getId());
-			currentUser.setEmail(currntUser.getEmail());
-			currentUser.setPassword(currntUser.getPassword());
-			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
+			currntUser.setId(currntUser.getId());
+			currntUser.setEmail(currntUser.getEmail());
+			currntUser.setPassword(currntUser.getPassword());
+			currntUser.setAdditionalInfo(currntUser.getAdditionalInfo());
 			//session.setAttribute("currentUser", currentUser);
 			return "redirect:" + "../static/html/main.html";
 		}
