@@ -39,18 +39,19 @@ public class UserController {
 		/*ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
 		HttpSession session = attributes.getRequest().getSession();*/
 		User currntUser = new UserDAOImpl().getByEmail(email);//(User)session.getAttribute("currentUser");
-				
+		currntUser.getAdditionalInfo().setFirstName(firstName);
+		currntUser.getAdditionalInfo().setLastName(lastName);
+		currntUser.getAdditionalInfo().setAddress(address);
+		currntUser.getAdditionalInfo().setMobilePhoneNumber(phone);
 		if (null != currntUser){
-			if (currntUser.getPassword() == oldPassword && newPassword1 == newPassword2 
-					&& newPassword1 != "" && newPassword2 != ""){
+			if (currntUser.getPassword().equals(oldPassword) && newPassword1.equals(newPassword2) 
+					&& !newPassword1.isEmpty() && !newPassword2.isEmpty()){
 				
-				currentUser.setEmail(newEmail);
-				currentUser.setPassword(newPassword1);
 				if(isValid(firstName, lastName, address, phone)){
-					UserDetails userDetails = new UserDetails(firstName, lastName, address, phone);
-					currentUser.setAdditionalInfo(userDetails);
-					new UserDetailsDAOImpl().insert(userDetails);
-					new UserDAOImpl().update(currentUser);					
+					currentUser.setEmail(newEmail);
+					currentUser.setPassword(newPassword1);
+					currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
+					new UserDAOImpl().update(currntUser);					
 					return "redirect:" +  "../static/html/main.html";
 				}
 			}
@@ -59,6 +60,6 @@ public class UserController {
 	}
 	
 	private boolean isValid(String fName, String lName, String address, String pNum){
-		return ((fName != null) && (lName != null) && (address != null) && (pNum != null));
+		return ((!fName.isEmpty()) && (!lName.isEmpty()) && (!address.isEmpty()) && (!pNum.isEmpty()));
 	}
 }

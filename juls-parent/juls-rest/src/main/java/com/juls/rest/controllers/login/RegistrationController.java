@@ -14,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.juls.model.User;
+import com.juls.model.UserDetails;
 import com.juls.persist.UserDAOImpl;
 import com.juls.rest.entityContainers.UserEntityContainer;
 
@@ -28,11 +29,12 @@ public class RegistrationController {
 	@RequestMapping(value="/user", method=RequestMethod.POST, headers = "Accept=*/*", produces="application/json")
 	public String register(@ModelAttribute("userPrototype") UserEntityContainer userPrototype){
 		User currntUser = new User(userPrototype.getEmail(), userPrototype.getPassword());
+		currntUser.setAdditionalInfo(new UserDetails("test", "", "", ""));
 		if(new UserDAOImpl().insert(currntUser)){
-			currntUser.setId(currntUser.getId());
-			currntUser.setEmail(currntUser.getEmail());
-			currntUser.setPassword(currntUser.getPassword());
-			currntUser.setAdditionalInfo(currntUser.getAdditionalInfo());
+			currentUser.setId(currntUser.getId());
+			currentUser.setEmail(currntUser.getEmail());
+			currentUser.setPassword(currntUser.getPassword());
+			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
 			return "redirect:" + "../static/html/main.html";
 		}
 		else{

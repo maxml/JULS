@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name="userdetails")
+@Component
+@Scope("session")
 public class UserDetails {
 	public UserDetails(){
 		

@@ -3,6 +3,7 @@ package com.juls.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,10 +38,12 @@ public class User implements Serializable{
 	
 	@Column(nullable = false, unique = true)
 	private String email;
+	
 	@Column(nullable = false)
 	private String password;
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id")
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn
 	private UserDetails additionalInfo;
 	
 	public String getId() {
