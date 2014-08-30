@@ -29,10 +29,10 @@ public class RegistrationController {
 	public String register(@ModelAttribute("userPrototype") UserEntityContainer userPrototype){
 		User currntUser = new User(userPrototype.getEmail(), userPrototype.getPassword());
 		if(new UserDAOImpl().insert(currntUser)){
-			currentUser.setId(currntUser.getId());
-			currentUser.setEmail(currntUser.getEmail());
-			currentUser.setPassword(currntUser.getPassword());
-			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
+			currntUser.setId(currntUser.getId());
+			currntUser.setEmail(currntUser.getEmail());
+			currntUser.setPassword(currntUser.getPassword());
+			currntUser.setAdditionalInfo(currntUser.getAdditionalInfo());
 			return "redirect:" + "../static/html/main.html";
 		}
 		else{

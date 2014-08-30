@@ -12,9 +12,14 @@ $(document).ready(function(){
 
 function showGoods(JSON){
 	var HTMLString = "";
+	var addToCartBtnName = "btn-add-to-cart";
 	for (var i = 0; i < JSON.length; i++){
 		var object = JSON[i];
-		HTMLString += "<li><strong>ID:</strong> "+object["id"] + " <strong>NAME:</strong> " + object["name"] + " <strong>PRICE:</strong> " + object["price"]+"</li>";
-		
+		HTMLString += "<li><strong>ID:</strong> "+ object["id"] 
+		               + " <strong>NAME:</strong> " + object["name"] 
+					   + " <strong>PRICE:</strong> " + object["price"]
+					   + " <button id='" + addToCartBtnName + "-" + i + "' data-item-id='" + object["id"] + "' class='" + addToCartBtnName + "'>Add to cart</button>"
+					   + "</li>";
 	}
+	$('#goodsList').html(HTMLString);
 }
