@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.juls.model.User;
 import com.juls.persist.UserDAOImpl;
 import com.juls.rest.entityContainers.UserEntityContainer;
+import com.juls.rest.services.Redirector;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -24,14 +25,14 @@ public class LoginController {
 	public String userLogin(@ModelAttribute("user") UserEntityContainer user) {
 		User currntUser = new UserDAOImpl().getByEmail(user.getEmail());
 		if (currntUser != null){
-			/*ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
-			HttpSession session = attributes.getRequest().getSession();*/
 			currentUser.setId(currntUser.getId());
 			currentUser.setEmail(currntUser.getEmail());
 			currentUser.setPassword(currntUser.getPassword());
+			currentUser.setRegStatus(currntUser.getRegStatus());
+			currentUser.setToken(currntUser.getToken());
 			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
-			//session.setAttribute("currentUser", currntUser);
-			return "redirect:../static/html/main.html"; 
+
+			return Redirector.redirectToMain(); 
 		}
 		return "";
     }

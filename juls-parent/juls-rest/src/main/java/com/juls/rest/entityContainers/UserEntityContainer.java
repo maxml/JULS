@@ -1,5 +1,6 @@
 package com.juls.rest.entityContainers;
 
+@Deprecated
 public class UserEntityContainer {
 	
 	UserEntityContainer(){
