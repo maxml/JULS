@@ -2,6 +2,10 @@ $('#buyBtn').on('click', 'button.btn-add-to-cart', function() {
     var itemId = $(this).attr('data-item-id');
     put(itemId);
 });
+$('#goodsList').on('click', 'button.btn-add-to-cart', function() {
+    var itemId = $(this).attr('data-item-id');
+    put(itemId);
+});
 
 function put(itemId){
 	$.ajax({
