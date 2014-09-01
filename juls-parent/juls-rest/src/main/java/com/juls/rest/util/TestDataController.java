@@ -1,7 +1,5 @@
 package com.juls.rest.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juls.model.Good;
 import com.juls.model.User;
-import com.juls.model.UserDetails;
 import com.juls.persist.GoodDAOImpl;
 import com.juls.persist.IDAO;
 import com.juls.persist.UserDAOImpl;
-import com.juls.persist.UserDetailsDAOImpl;
 
 
 @Controller
