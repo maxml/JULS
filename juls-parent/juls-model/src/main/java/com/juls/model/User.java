@@ -20,7 +20,10 @@ import org.springframework.stereotype.Component;
 @Table(name="user")
 @Component
 @Scope("session")
-public class User implements Serializable{
+public class User implements Serializable {
+	
+	public static final int REGISTERED = 1;
+	public static final int UNCONFIRMED = 0;
 	
 	public User(){
 		
@@ -30,6 +33,7 @@ public class User implements Serializable{
 		setId(UUID.randomUUID().toString());
 		setEmail(email);
 		setPassword(password);
+		setRegStatus(UNCONFIRMED);
 	}
 	
 	@Id
@@ -41,6 +45,12 @@ public class User implements Serializable{
 	
 	@Column(nullable = false)
 	private String password;
+	
+	@Column(name = "reg_status")
+	private int regStatus;
+	
+	@Column(unique = true)
+	private String token;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn
@@ -69,6 +79,22 @@ public class User implements Serializable{
 	}
 	public void setAdditionalInfo(UserDetails additionalInfo) {
 		this.additionalInfo = additionalInfo;
+	}
+
+	public int getRegStatus() {
+		return regStatus;
+	}
+
+	public void setRegStatus(int regStatus) {
+		this.regStatus = regStatus;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

@@ -1,22 +1,17 @@
 package com.juls.rest.controllers.login;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.juls.model.User;
-import com.juls.model.UserDetails;
 import com.juls.persist.UserDAOImpl;
-import com.juls.rest.entityContainers.UserEntityContainer;
+import com.juls.rest.services.Redirector;
+import com.juls.rest.services.RegistrationService;
 
 @Controller
 @RequestMapping(value="/new")
@@ -27,18 +22,34 @@ public class RegistrationController {
 	User currentUser;
 	
 	@RequestMapping(value="/user", method=RequestMethod.POST, headers = "Accept=*/*", produces="application/json")
-	public String register(@ModelAttribute("userPrototype") UserEntityContainer userPrototype){
-		User currntUser = new User(userPrototype.getEmail(), userPrototype.getPassword());
-		currntUser.setAdditionalInfo(new UserDetails("test", "", "", ""));
-		if(new UserDAOImpl().insert(currntUser)){
+	public String register(@RequestParam("email") String email, @RequestParam("password1") String password1, 
+			@RequestParam("password2") String password2){
+		RegistrationService regsvc = new RegistrationService();
+		User currntUser = regsvc.register(email, password1, password2);
+		if(regsvc.save(currntUser)){
 			currentUser.setId(currntUser.getId());
 			currentUser.setEmail(currntUser.getEmail());
 			currentUser.setPassword(currntUser.getPassword());
+			currentUser.setRegStatus(currntUser.getRegStatus());
+			currentUser.setToken(currntUser.getToken());
 			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
-			return "redirect:" + "../static/html/main.html";
+			regsvc.sendConfirmationEmail(currntUser);
+			return Redirector.redirectToMain();
 		}
 		else{
-			return "";
+			return "Error";
 		}
+	}
+	
+	@RequestMapping(value="/validate/{userToken}", method=RequestMethod.GET, produces="application/json")
+	public String validate(@PathVariable("userToken") String userToken){
+		RegistrationService regsrvc = new RegistrationService();
+		if (regsrvc.validate(userToken)){
+			if (currentUser.getId().equals(new UserDAOImpl().getByToken(userToken).getId()))
+				currentUser.setRegStatus(User.REGISTERED);
+			return Redirector.redirectToMain();
+		}	
+		else
+			return "Error";
 	}
 }

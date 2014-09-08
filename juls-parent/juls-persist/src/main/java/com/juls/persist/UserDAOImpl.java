@@ -85,4 +85,19 @@ public class UserDAOImpl implements IDAO<User>{
 		tr.commit();
 		return resultUser;
 	}
+	
+	public User getByToken(String token){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		Query query = session.createQuery("from User user WHERE user.token='"+token+"'");
+		User resultUser = null;
+		try{
+			resultUser = (User)query.list().get(0);
+		}
+		catch(Exception ex){
+			System.err.println(ex.getMessage());
+		}
+		tr.commit();
+		return resultUser;
+	}
 }

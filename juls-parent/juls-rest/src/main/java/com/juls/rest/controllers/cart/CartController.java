@@ -23,8 +23,7 @@ public class CartController {
 	User currentUser;
 	
 	@RequestMapping(value = "/put/{itemUUID}", method = RequestMethod.PUT, produces = MediaType.TEXT_HTML_VALUE)
-	public @ResponseBody String addToCart(@PathVariable("itemUUID") String itemUUID 
-			/*@ModelAttribute("user") UserEntityContainer user*/) {
+	public @ResponseBody String addToCart(@PathVariable("itemUUID") String itemUUID) {
 		
 		StringBuilder sb = new StringBuilder();
 		

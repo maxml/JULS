@@ -1,5 +1,6 @@
 package com.juls.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -12,15 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="good")
+@Component
+@Scope("session")
 @JsonIgnoreProperties("orderGoods")
-public class Good {
+public class Good implements Serializable {
 	
 	public Good(){
 		orderGoods = new LinkedList<OrderGood>();
