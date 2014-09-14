@@ -12,26 +12,26 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="order_to_good")
+@Table(name="cart_to_good")
 @AssociationOverrides({
-	@AssociationOverride(name = "id.order", 
-		joinColumns = @JoinColumn(name = "id_order")),
+	@AssociationOverride(name = "id.cart", 
+		joinColumns = @JoinColumn(name = "id_cart")),
 	@AssociationOverride(name = "id.good", 
 		joinColumns = @JoinColumn(name = "id_good")) })
-public class OrderGood {
+public class CartGood {
 	
 	@EmbeddedId
-	private OrderGoodId id = new OrderGoodId();
+	private CartGoodId id = new CartGoodId();
 	
 	@Column(name = "good_amount")
 	private long goodAmount;
 	
 
-	public OrderGoodId getId() {
+	public CartGoodId getId() {
 		return id;
 	}
 
-	public void setId(OrderGoodId id) {
+	public void setId(CartGoodId id) {
 		this.id = id;
 	}
 
@@ -53,12 +53,12 @@ public class OrderGood {
 	}
 
 	@Transient
-	public Order2 getOrder() {
-		return getId().getOrder();
+	public Cart getCart() {
+		return getId().getCart();
 	}
 
-	public void setOrder(Order2 order) {
-		getId().setOrder(order);
+	public void setCart(Cart cart) {
+		getId().setCart(cart);
 	}
 	
 	

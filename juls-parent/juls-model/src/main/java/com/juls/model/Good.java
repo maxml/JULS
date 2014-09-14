@@ -25,14 +25,14 @@ import org.springframework.stereotype.Component;
 public class Good implements Serializable {
 	
 	public Good(){
-		orderGoods = new LinkedList<OrderGood>();
+		orderGoods = new LinkedList<CartGood>();
 	}
 	
 	public Good(String name, float price){
 		setId(UUID.randomUUID().toString());
 		setName(name);
 		setPrice(price);
-		orderGoods = new LinkedList<OrderGood>();
+		orderGoods = new LinkedList<CartGood>();
 	}
 
 	@Id
@@ -46,13 +46,13 @@ public class Good implements Serializable {
 	private float price;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id.good", cascade = CascadeType.ALL)
-	private List<OrderGood> orderGoods;
+	private List<CartGood> orderGoods;
 	
-	public List<OrderGood> getOrderGoods() {
+	public List<CartGood> getOrderGoods() {
 		return orderGoods;
 	}
 
-	public void setOrderGoods(List<OrderGood> orderGoods) {
+	public void setOrderGoods(List<CartGood> orderGoods) {
 		this.orderGoods = orderGoods;
 	}
 

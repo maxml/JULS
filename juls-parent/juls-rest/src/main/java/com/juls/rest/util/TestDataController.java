@@ -17,15 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juls.model.Good;
-import com.juls.model.Order;
-import com.juls.model.Order2;
-import com.juls.model.OrderGood;
+import com.juls.model.Cart;
+import com.juls.model.CartGood;
 import com.juls.model.User;
 import com.juls.model.UserDetails;
-import com.juls.persist.GoodDAOImpl;
 import com.juls.persist.HibernateUtil;
 import com.juls.persist.IDAO;
-import com.juls.persist.OrderDAOImpl;
 import com.juls.persist.UserDAOImpl;
 import com.juls.persist.UserDetailsDAOImpl;
 
@@ -86,17 +83,17 @@ public class TestDataController {
 		// Order-s
 		//IDAO<Order2> orderDAO = new OrderDAOImpl();
 
-		Order2 order2 = new Order2(2);
+		Cart cart = new Cart(2);
 		
 		// OrderGood-s
-		OrderGood orderGood1 = new OrderGood();
-		orderGood1.setGoodAmount(3);
-		orderGood1.setGood(good1);
-		orderGood1.setOrder(order2);
+		CartGood cartGood1 = new CartGood();
+		cartGood1.setGoodAmount(3);
+		cartGood1.setGood(good1);
+		cartGood1.setCart(cart);
 		
-		order2.getOrderGoods().add(orderGood1);
+		cart.getCartGoods().add(cartGood1);
 		
-		session.save(order2);
+		session.save(cart);
         transaction.commit();
 		
 

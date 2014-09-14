@@ -10,13 +10,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Embeddable
-public class OrderGoodId implements Serializable{
+public class CartGoodId implements Serializable{
 	
 	@ManyToOne
 	private Good good;
 	
 	@ManyToOne
-	private Order2 order;
+	private Cart cart;
 
 	public Good getGood() {
 		return good;
@@ -26,12 +26,12 @@ public class OrderGoodId implements Serializable{
 		this.good = good;
 	}
 
-	public Order2 getOrder() {
-		return order;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setOrder(Order2 order) {
-		this.order = order;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 }

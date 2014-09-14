@@ -1,5 +1,6 @@
 package com.juls.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Table(name="userdetails")
 @Component
 @Scope("session")
-public class UserDetails {
+public class UserDetails implements Serializable{
 	public UserDetails(){
 		
 	}

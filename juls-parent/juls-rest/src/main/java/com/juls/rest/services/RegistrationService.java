@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import com.juls.model.User;
 import com.juls.model.UserDetails;
 import com.juls.persist.UserDAOImpl;
-import com.juls.rest.entityContainers.UserEntityContainer;
 
 @Service
 public class RegistrationService {
