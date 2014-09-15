@@ -36,9 +36,10 @@
 		create-drop: drop the schema at the end of the session. -->
         
         <mapping class="com.juls.model.Good"/>
+        <mapping class="com.juls.model.Cart"/>
     	<mapping class="com.juls.model.User"/>
     	<mapping class="com.juls.model.UserDetails"/>
- 
+ 		<mapping class="com.juls.model.CartGood"/>
     </session-factory>
  
 </hibernate-configuration>

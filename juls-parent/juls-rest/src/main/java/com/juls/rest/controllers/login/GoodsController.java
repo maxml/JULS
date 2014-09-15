@@ -1,5 +1,7 @@
 package com.juls.rest.controllers.login;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,9 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.juls.model.Good;
-import com.juls.model.GoodInfo;
+import com.juls.model.User;
 import com.juls.persist.GoodDAOImpl;
 
 @Controller
@@ -24,9 +25,30 @@ public class GoodsController {
 	
 	@Autowired Good selected;
 	
-	@RequestMapping(value="/all", method = RequestMethod.GET, headers = "Accept=*/*",produces = "application/json")
-	public @ResponseBody List<Good> getAllGoods(){
+	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Good> getAllGoods(HttpSession session){
 		List<Good> resultList =  new GoodDAOImpl().getAll();
+		
+		System.out.println("--------------");
+		if(null != session){
+			for (Enumeration<String> e = session.getAttributeNames(); e.hasMoreElements();) {
+				String attrName = e.nextElement();
+				Object attrObject = session.getAttribute(attrName);
+				System.out.println("attribute = " + attrName);
+				System.out.println("attrValue = " + attrObject);
+				if(attrName.equals("user") && attrObject != null) {
+					User user = (User)attrObject;
+					System.out.println("user.email = " + user.getEmail());
+				}
+				if(attrName.equals("good") && attrObject != null) {
+					Good good = (Good)attrObject;
+					System.out.println("good.name = " + good.getName());
+					System.out.println("good.id = " + good.getId());
+				}
+			}
+		}
+		System.out.println("--------------");
+		
 		return resultList;
 	}
 	

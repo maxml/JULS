@@ -14,7 +14,17 @@ function put(itemId){
     	contentType: "x-www-form-urlencoded; charset=UTF-8",
     	url: "../../cart/put/"+ itemId //?itemUUID=" + itemId
     }).done(function( responseData ) {
-    	alert(responseData);
+    	var feedbackForUser;
+    	if(responseData["code"] == 1)
+    		feedbackForUser = "Please, Sign In or Sign Up.";
+    	else if(responseData["code"] == 2)
+    		feedbackForUser = "Unknown item.";
+    	else if(responseData["code"] == 3)
+    		feedbackForUser = "New item was added to cart.";
+    	else if(responseData["code"] == 4)
+    		feedbackForUser = "This item is in cart already.";
+    		
+    	alert(feedbackForUser);
     });
 };
 

@@ -69,7 +69,7 @@ public class RegistrationService {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
 			message.setSubject("Account confirmation");
 			message.setText(""
-					+ "Thank you for registering at http://juls.in.ua. \n"
+					+ "Thank you for registration at http://juls.in.ua. \n"
 					+ "To complete registration, please, click on the confirmation link below. \n"
 					+ Redirector.getEmailConfirmLink(target.getToken()) + "\n"
 					+ "Please note, that this email doesn't need to be replied. If you didn't register at http://juls.in.ua please ignore this message" );
