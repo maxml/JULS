@@ -8,5 +8,6 @@ $('#goodsList').on('click', 'button.btn-more-info', function() {
 	}).done(function(response) {
 		if (response)
 			window.location = "selectedGood.html";
+		
 	});
 });

@@ -38,10 +38,14 @@ public class TestDataController {
 	public @ResponseBody String insertData() {
 		
 		IDAO<Good> goodDAO = new GoodDAOImpl();
+		Good good1 = new Good("Good1", 99.99f, "This is a test description for the first good.",
+				"Cereals", "200g", "Rice, wheat, sugar, crops");
+		 
+		Good good2 = new Good("Good2", 5.4f, "This is a test description for the second good.",
+				"Salads", "100g", "cheese, cabbage leaves, beans, salad leaves, salt");
 		
-		Good good1 = new Good("Good1", 99.99f);
-		Good good2 = new Good("Good2", 5.4f);
-		Good good3 = new Good("Good3", 12.3f);
+		Good good3 = new Good("Good3", 12.3f, "This is a test description fot the third good.",
+				"Juice", "0.5 litres", "Fresh apple juice.");
 		
 		goodDAO.insert(good1);
 		goodDAO.insert(good2);

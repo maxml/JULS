@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juls.model.Good;
+import com.juls.model.GoodInfo;
 import com.juls.persist.GoodDAOImpl;
 
 @Controller
@@ -37,6 +38,7 @@ public class GoodsController {
 				selected.setId(good.getId());
 				selected.setName(good.getName());
 				selected.setPrice(good.getPrice());
+				selected.setGoodInfo(good.getGoodInfo());
 			}
 			return good;
 		}

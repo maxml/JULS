@@ -20,7 +20,7 @@ public class GoodDAOImpl implements IDAO<Good>{
 		Transaction tr = session.beginTransaction();
 		Query selectQuery = session.createQuery("from Good");
 		resultList = selectQuery.list();
-		tr.commit();
+		//tr.commit();
 		return resultList;
 	}
 
@@ -33,6 +33,7 @@ public class GoodDAOImpl implements IDAO<Good>{
 			return true;
 		}
 		catch(Exception ex){
+			//tr.rollback();
 			return false;
 		}
 	}
@@ -46,6 +47,7 @@ public class GoodDAOImpl implements IDAO<Good>{
 			return true;
 		}
 		catch(Exception ex){
+			//tr.rollback();
 			return false;
 		}
 	}
@@ -59,6 +61,7 @@ public class GoodDAOImpl implements IDAO<Good>{
 			return true;
 		}
 		catch(Exception ex){
+			//tr.rollback();
 			return false;
 		}
 	}

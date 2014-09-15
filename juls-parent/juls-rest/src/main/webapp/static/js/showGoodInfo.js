@@ -7,5 +7,10 @@ $(document).ready(function(){
 	}).done(function(response) {
 		$('#goodName').text(response["name"]);
 		$('#price').text(response["price"]);
+		var goodInfoObject = response["goodInfo"];
+		$('#description').text(goodInfoObject["description"]);
+		$('#type').text(goodInfoObject["type"]);
+		$('#mass').text(goodInfoObject["mass"]);
+		$('#composition').text(goodInfoObject["composition"]);
 	});
 });
