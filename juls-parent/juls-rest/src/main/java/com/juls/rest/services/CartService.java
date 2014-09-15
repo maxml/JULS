@@ -23,6 +23,9 @@ public class CartService {
 	private static final int NEW_GOOD_WAS_ADDED = 3;
 	private static final int GOOD_IS_IN_CART = 4;
 	
+	private static final String EMPTY_JSON = "[]";
+	
+	
 	private static SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
 	
 	public int addToCart(User user, String goodId) {
@@ -65,7 +68,7 @@ public class CartService {
 
 	private boolean isGoodInCart(Cart cart, String goodId) {	
 		List<CartGood> cart2good = cart.getCartGoods();
-		System.out.println("cart2good.amount=" + cart2good.size());
+//		System.out.println("cart2good.amount=" + cart2good.size());
 		for (CartGood cartGood : cart2good) {
 			if(cartGood.getGood().getId().equals(goodId))
 				return true;
@@ -81,4 +84,40 @@ public class CartService {
 		}
 		return cart;
 	}	
+	
+	public String getAllGoods(User user) {
+		if(user == null || user.getId() == null)
+			return EMPTY_JSON;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		
+		user = (User)session.get(User.class, user.getId());
+		Cart cart = user.getUserCart();
+		
+		if(cart == null || cart.getCartGoods().size() == 0) {
+			tr.commit();
+			return EMPTY_JSON;
+		}
+		
+		List<CartGood> cart2good = cart.getCartGoods();
+		StringBuilder goodsJSON = new StringBuilder("[");
+		
+		Good good = null;
+		for (CartGood cartGood : cart2good) {
+			if(good != null)
+				goodsJSON.append(",");
+			good = cartGood.getGood();
+			goodsJSON.append("{\"name\":\"" + good.getName() + "\",");
+			goodsJSON.append("\"price\":" + good.getPrice() + "}");
+		}
+		
+		tr.commit();
+		
+		goodsJSON.append("]");
+		
+		System.out.println(goodsJSON);
+		
+		return goodsJSON.toString();
+	}
 }

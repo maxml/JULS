@@ -28,4 +28,9 @@ public class CartController {
 		
 		return "{\"code\":" + answerCode + "}";
 	}
+	
+	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String showAllItems() {
+		return new CartService().getAllGoods(currentUser);
+	}
 }

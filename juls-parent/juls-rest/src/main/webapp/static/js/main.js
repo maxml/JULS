@@ -22,6 +22,7 @@ function cutEmailToUserName(email){
 		var atIndex = email.indexOf('@');
 		
 		createSignOutButton();
+		createUserCartButton();
 		
 		return email.substring(0, atIndex);
 		
@@ -42,6 +43,13 @@ function createSignInButton() {
 	$('#sign-container').html('<button id="btn-sign-in-or-up">Sign In/Up</button>');
 	$('#sign-container').on('click', '#btn-sign-in-or-up', function() {
 		window.location = "/login.html";
+	});
+}
+
+function createUserCartButton() {
+	$('#cart-container').html('<button id="btn-user-cart">My cart</button>');
+	$('#cart-container').on('click', '#btn-user-cart', function() {
+		window.location = "/cart.html";
 	});
 }
 
