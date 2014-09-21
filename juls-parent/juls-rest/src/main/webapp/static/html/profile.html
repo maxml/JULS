@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JULS Profile</title>
+</head>
+<body>
+	<h3>Profile</h3>
+	<form method="get" action="../../user/curr" enctype="x-www-form-urlencoded">
+		<strong>Email:</strong>
+		<input id="oldEmail" type="email" name="email" readonly></input>
+		<br>
+			<strong>First Name:</strong>
+			<input id="fName" type="text" name="firstname" readonly></input>
+		<br>
+			<strong>Last Name:</strong>
+			<input id="lName" type="text" name="lastname" readonly></input>
+		<br>
+			<strong>Address:</strong>
+			<input id="address" type="text" name="address" readonly></input>
+		<br>
+			<strong>Phone number:</strong>
+			<input id="pNumber" type="text" name="phonenumber" readonly></input>
+		<br>
+			<input id="edit" onclick="location.href = 'cabinet.html'" type="button" value="Edit"></input>
+	</form>
+		<br>
+		
+	<div id="cabinet-container"> </div>	
+	
+</body>
+
+<script type="text/javascript" src="static/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/profile.js"></script>
+
+</html>
+
