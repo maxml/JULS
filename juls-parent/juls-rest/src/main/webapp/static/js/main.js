@@ -17,6 +17,18 @@ $(document).ready(function(){
 	});
 });
 
+$('#searchBtn').click(function(){
+	$.ajax({
+		type: 'GET',
+		async: true,
+		url: '../../goods/search/'+ $('#srchquery').val(),
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success: function(answer){
+			showGoods(answer);
+		}
+	});
+});
+
 function cutEmailToUserName(email){
 	if(email != null) {
 		var atIndex = email.indexOf('@');

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.juls.model.Good;
 import com.juls.model.User;
 import com.juls.persist.GoodDAOImpl;
+import com.juls.rest.services.GoodsService;
 
 @Controller
 @RequestMapping(value="/goods")
@@ -70,5 +72,11 @@ public class GoodsController {
 	@RequestMapping(value="/chosen", method = RequestMethod.GET, produces="application/json")
 	public @ResponseBody Good getChosen(){
 		return selected;
+	}
+	
+	@RequestMapping(value= "/search/{query}", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody List<Good>searchForGood(@PathVariable("query") String query){
+		GoodsService gsrvc = new GoodsService();
+		return gsrvc.getSearchResult(query.toLowerCase());
 	}
 }
