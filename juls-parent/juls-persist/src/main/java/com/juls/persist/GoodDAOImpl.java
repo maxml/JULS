@@ -20,13 +20,17 @@ public class GoodDAOImpl implements IDAO<Good>{
 		Transaction tr = session.beginTransaction();
 		Query selectQuery = session.createQuery("from Good");
 		resultList = selectQuery.list();
-		//tr.commit();
+		tr.commit();
 		return resultList;
 	}
 
 	public boolean insert(Good value) {
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tr = session.beginTransaction();
+		Transaction tr;
+		if (session.getTransaction() == null)
+			tr = session.beginTransaction();
+		else
+			tr = session.getTransaction();
 		try{
 			session.save(value);
 			tr.commit();

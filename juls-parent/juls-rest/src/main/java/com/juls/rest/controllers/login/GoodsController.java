@@ -2,7 +2,9 @@ package com.juls.rest.controllers.login;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -75,8 +77,14 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value= "/search/{query}", method=RequestMethod.GET, produces="application/json")
-	public @ResponseBody List<Good>searchForGood(@PathVariable("query") String query){
+	public @ResponseBody Set<Good>searchForGood(@PathVariable("query") String query){
 		GoodsService gsrvc = new GoodsService();
-		return gsrvc.getSearchResult(query.toLowerCase());
+		String[] subQueries = query.split(" ");
+		Set <Good> queryResult = new HashSet<Good>();
+		for(String s : subQueries){
+			System.out.println("Subquery: " + s);
+			queryResult.addAll(gsrvc.getSearchResult(s));
+		}
+		return queryResult;
 	}
 }
