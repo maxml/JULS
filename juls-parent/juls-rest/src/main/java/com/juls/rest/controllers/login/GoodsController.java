@@ -1,8 +1,7 @@
 package com.juls.rest.controllers.login;
 
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -79,12 +78,6 @@ public class GoodsController {
 	@RequestMapping(value= "/search/{query}", method=RequestMethod.GET, produces="application/json")
 	public @ResponseBody Set<Good>searchForGood(@PathVariable("query") String query){
 		GoodsService gsrvc = new GoodsService();
-		String[] subQueries = query.split(" ");
-		Set <Good> queryResult = new HashSet<Good>();
-		for(String s : subQueries){
-			System.out.println("Subquery: " + s);
-			queryResult.addAll(gsrvc.getSearchResult(s));
-		}
-		return queryResult;
+		return gsrvc.getSearchResult(query);
 	}
 }
