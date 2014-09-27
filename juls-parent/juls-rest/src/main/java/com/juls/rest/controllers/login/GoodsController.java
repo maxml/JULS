@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juls.model.Good;
@@ -70,6 +71,12 @@ public class GoodsController {
 		return null;
 	}
 	
+	@RequestMapping(value="/sort", method = RequestMethod.GET, produces="application/json")
+	public @ResponseBody Set<Good> sort(@RequestParam(value="query") String query, @RequestParam(value="by") String by, @RequestParam(value="direction") String direction){
+		GoodsService gService = new GoodsService();
+		return gService.doSort(query, by, direction);
+	}
+	
 	@RequestMapping(value="/chosen", method = RequestMethod.GET, produces="application/json")
 	public @ResponseBody Good getChosen(){
 		return selected;
@@ -78,6 +85,6 @@ public class GoodsController {
 	@RequestMapping(value= "/search/{query}", method=RequestMethod.GET, produces="application/json")
 	public @ResponseBody Set<Good>searchForGood(@PathVariable("query") String query){
 		GoodsService gsrvc = new GoodsService();
-		return gsrvc.getSearchResult(query);
+		return gsrvc.getSearchResult(query.trim());
 	}
 }

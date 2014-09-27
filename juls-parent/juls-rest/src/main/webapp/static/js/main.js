@@ -17,11 +17,55 @@ $(document).ready(function(){
 	});
 });
 
+var arrowDownSign = "%u2191";
+var arrowUpSign = "%u2193";
+
+/*<option value="price &uarr;">price &uarr;</option>
+			<option value="name &uarr;">name &uarr;</option>
+			<option value="price &darr;">price &darr;</option>
+			<option value="name &darr;">name &darr;</option>*/
+
+$('#sortBy').change(function(){
+	var comboBoxValue = $('#sortBy option:selected').text();
+	var searchQuery = $('#searchquery').val();
+	if (searchQuery === ''){
+		searchQuery = "null";
+	}
+	var sortBy;
+	var sortDir;
+	if (comboBoxValue.indexOf("name") > -1)
+	{
+		sortBy = "name";
+	}
+	else if (comboBoxValue.indexOf("price") > -1)
+	{
+		sortBy = "price";
+	}
+	if (comboBoxValue.indexOf(unescape(arrowDownSign)) > -1)
+		sortDir = "ASC";
+	else if (comboBoxValue.indexOf(unescape(arrowUpSign)) > -1)
+		sortDir = "DESC";
+	
+	doSort(searchQuery, sortBy, sortDir);
+});
+
+function doSort(searchQuery, by, way){  
+	$.ajax({
+		type: "GET",
+		async: true,
+		url: '../../goods/sort?query=' + searchQuery + '&by=' + by + '&direction=' + way,
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success: function(answer){
+			showGoods(answer);
+		}
+	});
+}
+
 $('#searchBtn').click(function(){
 	$.ajax({
 		type: 'GET',
 		async: true,
-		url: '../../goods/search/'+ $('#srchquery').val(),
+		url: '../../goods/search/'+ $('#searchquery').val(),
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success: function(answer){
 			showGoods(answer);

@@ -35,17 +35,7 @@ public class LoginController {
 		else
 			session.setMaxInactiveInterval(FIVE_MINUTES_IN_SECONDS);
 		
-		User currntUser = new UserDAOImpl().getByEmail(requestEmail);
-
-//		System.out.println("-----------");
-//		if(session != null) {
-//			System.out.println("session != null");
-//			System.out.println("sessionMaxInectiveInterval == " + session.getMaxInactiveInterval());
-//			
-//		} else
-//			System.out.println("session == null");
-//		System.out.println("-----------");
-//		
+		User currntUser = new UserDAOImpl().getByEmail(requestEmail);	
 		if (currntUser != null){
 			if (currntUser.getPassword().equals(requestPassword)){
 				currentUser.setId(currntUser.getId());

@@ -17,8 +17,18 @@
 		<p id = "accStat" > </p>
 	</div>
 	<div>
-		<input type="text" id="srchquery" placeholder="search"></input>
+		<input type="text" id="searchquery" placeholder="search"></input>
 		<input type="button" id ="searchBtn" value="Search"></input>
+	</div>
+	<div> <!-- http://www.scriptol.com/html5/combobox.php -->
+		<label>Sort by:</label>
+		<select id="sortBy">
+			<option value="1">price &uarr;</option>
+			<option selected="selected" value="2">name &uarr;</option>
+			<option value="3">price &darr;</option>
+			<option value="4">name &darr;</option>
+		</select>
+
 	</div>
 	<ul id = "goodsList">
 	</ul>

@@ -14,11 +14,36 @@ import com.juls.persist.GoodDAOImpl;
 public class GoodsService {
 	
 	public Set<Good> getSearchResult(String query){
-		String[] subqueries = query.split(" ");
+		Set<String> subqueries = new LinkedHashSet<String>();
+		for(String s : query.split(" ")){
+			subqueries.add(s);
+		}
+		
 		Set<Good> result = new LinkedHashSet<Good>(20);
-		List<Good> allGoods = new GoodDAOImpl().getAll();
 		for(String s : subqueries){
-			for(Good g : allGoods){
+			for(Good g : new GoodDAOImpl().getAll()){
+				if (g.getName().toLowerCase().contains(s)){
+					result.add(g);
+				}
+			}
+		}
+		return result;
+	}
+	
+	public Set<Good> doSort(String searchQuery, String parameter, String way){
+		Set<Good> result = new LinkedHashSet<Good>(20);
+		Set<String> subqueries = new LinkedHashSet<String>();
+		if (!searchQuery.equals("null")){
+			for(String s : searchQuery.split(" ")){
+				subqueries.add(s);
+			}
+		}
+		else
+		{
+			subqueries.add("");
+		}
+		for(String s : subqueries){
+			for (Good g : new GoodDAOImpl().getAllSortedBy(parameter, way)){
 				if (g.getName().toLowerCase().contains(s)){
 					result.add(g);
 				}

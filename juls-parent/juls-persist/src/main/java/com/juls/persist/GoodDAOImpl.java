@@ -37,7 +37,7 @@ public class GoodDAOImpl implements IDAO<Good>{
 			return true;
 		}
 		catch(Exception ex){
-			//tr.rollback();
+			tr.rollback();
 			return false;
 		}
 	}
@@ -70,6 +70,17 @@ public class GoodDAOImpl implements IDAO<Good>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Good> getAllSortedBy(String byWhat, String direction){
+		Session session = sessionFactory.getCurrentSession();
+		List<Good> resultList;
+		Transaction tr = session.beginTransaction();
+		Query selectQuery = session.createQuery("from Good ORDER BY " + byWhat + " " + direction );
+		resultList = selectQuery.list();
+		tr.commit();
+		return resultList;
+	}
+	
 	public Good getById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
