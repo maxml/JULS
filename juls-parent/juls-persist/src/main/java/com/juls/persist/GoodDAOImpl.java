@@ -20,20 +20,24 @@ public class GoodDAOImpl implements IDAO<Good>{
 		Transaction tr = session.beginTransaction();
 		Query selectQuery = session.createQuery("from Good");
 		resultList = selectQuery.list();
-		//tr.commit();
+		tr.commit();
 		return resultList;
 	}
 
 	public boolean insert(Good value) {
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tr = session.beginTransaction();
+		Transaction tr;
+		if (session.getTransaction() == null)
+			tr = session.beginTransaction();
+		else
+			tr = session.getTransaction();
 		try{
 			session.save(value);
 			tr.commit();
 			return true;
 		}
 		catch(Exception ex){
-			//tr.rollback();
+			tr.rollback();
 			return false;
 		}
 	}
@@ -66,6 +70,17 @@ public class GoodDAOImpl implements IDAO<Good>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Good> getAllSortedBy(String byWhat, String direction){
+		Session session = sessionFactory.getCurrentSession();
+		List<Good> resultList;
+		Transaction tr = session.beginTransaction();
+		Query selectQuery = session.createQuery("from Good ORDER BY " + byWhat + " " + direction );
+		resultList = selectQuery.list();
+		tr.commit();
+		return resultList;
+	}
+	
 	public Good getById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
