@@ -20,8 +20,9 @@ public class GoodsService {
 		}
 		
 		Set<Good> result = new LinkedHashSet<Good>(20);
+		List<Good> allGoods = new GoodDAOImpl().getAll();
 		for(String s : subqueries){
-			for(Good g : new GoodDAOImpl().getAll()){
+			for(Good g : allGoods){
 				if (g.getName().toLowerCase().contains(s)){
 					result.add(g);
 				}
