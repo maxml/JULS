@@ -30,30 +30,15 @@ public class GoodsController {
 	@Autowired Good selected;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Good> getAllGoods(HttpSession session){
+	public @ResponseBody List<Good> getAllGoods(){
 		List<Good> resultList =  new GoodDAOImpl().getAll();
-		
-		System.out.println("--------------");
-		if(null != session){
-			for (Enumeration<String> e = session.getAttributeNames(); e.hasMoreElements();) {
-				String attrName = e.nextElement();
-				Object attrObject = session.getAttribute(attrName);
-				System.out.println("attribute = " + attrName);
-				System.out.println("attrValue = " + attrObject);
-				if(attrName.equals("user") && attrObject != null) {
-					User user = (User)attrObject;
-					System.out.println("user.email = " + user.getEmail());
-				}
-				if(attrName.equals("good") && attrObject != null) {
-					Good good = (Good)attrObject;
-					System.out.println("good.name = " + good.getName());
-					System.out.println("good.id = " + good.getId());
-				}
-			}
-		}
-		System.out.println("--------------");
-		
 		return resultList;
+	}
+	
+	@RequestMapping(value="/byCat/{category}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Good> getGoodsByCategory(@PathVariable("category")String category){
+		GoodsService service = new GoodsService();
+		return service.getGoodsByCategory(category);
 	}
 	
 	@RequestMapping(value="/get/{goodId}", method = RequestMethod.GET, produces="application/json")
@@ -71,10 +56,13 @@ public class GoodsController {
 		return null;
 	}
 	
+	
+	
 	@RequestMapping(value="/sort", method = RequestMethod.GET, produces="application/json")
-	public @ResponseBody Set<Good> sort(@RequestParam(value="query") String query, @RequestParam(value="by") String by, @RequestParam(value="direction") String direction){
+	public @ResponseBody Set<Good> sort(@RequestParam(value="query") String query, @RequestParam(value="by") String by, @RequestParam(value="direction") String direction,
+			@RequestParam(value="category")String category){
 		GoodsService gService = new GoodsService();
-		return gService.doSort(query, by, direction);
+		return gService.doSort(query, by, direction, category);
 	}
 	
 	@RequestMapping(value="/chosen", method = RequestMethod.GET, produces="application/json")
@@ -86,5 +74,11 @@ public class GoodsController {
 	public @ResponseBody Set<Good>searchForGood(@PathVariable("query") String query){
 		GoodsService gsrvc = new GoodsService();
 		return gsrvc.getSearchResult(query.trim());
+	}
+	
+	@RequestMapping(value= "/search", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody Set<Good>searchForGood(){
+		GoodsService gsrvc = new GoodsService();
+		return gsrvc.getSearchResult("");
 	}
 }

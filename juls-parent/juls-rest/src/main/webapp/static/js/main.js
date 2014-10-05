@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	createSignOutButton();
 	$.ajax({
 		type : 'GET',
 		async: true,
@@ -10,9 +11,26 @@ $(document).ready(function(){
 			}
 			else {
 				$('#accStat').html('Account status: <font color="green">Registered</font>');
-				createSignOutButton();
+				
 			}
 			$('#userCabinetLink').html(cutEmailToUserName(answer["email"]));
+		}
+	});
+});
+
+
+var lastCategory = "all";
+
+$('.categories').click(function(){
+	$('#searchquery').val("");
+	lastCategory = $(this).text();
+	$.ajax({
+		type:'GET',
+		url: '../../goods/byCat/' + $(this).text(),
+		async: true,
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(answer){
+			showGoods(answer);
 		}
 	});
 });
@@ -20,15 +38,12 @@ $(document).ready(function(){
 var arrowDownSign = "%u2191";
 var arrowUpSign = "%u2193";
 
-/*<option value="price &uarr;">price &uarr;</option>
-			<option value="name &uarr;">name &uarr;</option>
-			<option value="price &darr;">price &darr;</option>
-			<option value="name &darr;">name &darr;</option>*/
-
 $('#sortBy').change(function(){
+	if (lastCategory !== "all")
+		$('#searchquery').val("");
 	var comboBoxValue = $('#sortBy option:selected').text();
 	var searchQuery = $('#searchquery').val();
-	if (searchQuery === ''){
+	if (searchQuery.trim() === ''){
 		searchQuery = "null";
 	}
 	var sortBy;
@@ -53,7 +68,7 @@ function doSort(searchQuery, by, way){
 	$.ajax({
 		type: "GET",
 		async: true,
-		url: '../../goods/sort?query=' + searchQuery + '&by=' + by + '&direction=' + way,
+		url: '../../goods/sort?query=' + searchQuery + '&by=' + by + '&direction=' + way + '&category=' + lastCategory + '',
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success: function(answer){
 			showGoods(answer);
@@ -62,10 +77,18 @@ function doSort(searchQuery, by, way){
 }
 
 $('#searchBtn').click(function(){
+	lastCategory = "all";
+	var searchQuery;
+	if ($('#searchquery').val() === "search"){
+		searchQuery = "";
+	}
+	else{
+		searchQuery = $('#searchquery').val();
+	}
 	$.ajax({
 		type: 'GET',
 		async: true,
-		url: '../../goods/search/'+ $('#searchquery').val(),
+		url: '../../goods/search/'+ searchQuery,
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success: function(answer){
 			showGoods(answer);
