@@ -10,7 +10,7 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/juls</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">300595200931</property>
+        <property name="connection.password">root</property>
  
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -40,6 +40,7 @@
     	<mapping class="com.juls.model.User"/>
     	<mapping class="com.juls.model.UserDetails"/>
  		<mapping class="com.juls.model.CartGood"/>
+ 		<mapping class="com.juls.model.Order"/>
     </session-factory>
  
 </hibernate-configuration>
