@@ -14,6 +14,7 @@ public class UserDAOImpl implements IDAO<User>{
 	
 	private static SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
 	
+	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		List<User> resultList;

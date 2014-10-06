@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Scope;
 @Entity
 @Table(name = "cart")
 @Scope("session")
-@JsonIgnoreProperties("cartGoods, order")
+@JsonIgnoreProperties("cartGoods")
 public class Cart {
 	
 	public static final int DEFAULT_CART_STATUS = 1;

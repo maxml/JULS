@@ -24,6 +24,7 @@ public class OrderDAOImpl implements IDAO<Order> {
 	
 	private static SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
 	 
+	@SuppressWarnings("unchecked")
 	public List<Order> getAll() {
 		
 		Session session = sessionFactory.getCurrentSession();
@@ -48,11 +49,8 @@ public class OrderDAOImpl implements IDAO<Order> {
 
 	public boolean insert( Order value) {	
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tr;
-		if (session.getTransaction() == null)
-			tr = session.beginTransaction();
-		else
-			tr = session.getTransaction();
+		Transaction tr = session.beginTransaction();
+		
 		try{
 			session.save(value);
 			tr.commit();
@@ -84,13 +82,10 @@ public class OrderDAOImpl implements IDAO<Order> {
 
 	public boolean delete(Order value) {
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tr;
-		if (session.getTransaction() == null)
-			tr = session.beginTransaction();
-		else 
-			tr = session.getTransaction();
+		Transaction tr = session.beginTransaction();
 		try{
 			session.delete(value);
+			if(!tr.wasCommitted());
 			tr.commit();
 			return true;
 		}
