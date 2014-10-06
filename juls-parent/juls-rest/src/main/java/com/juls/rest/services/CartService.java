@@ -10,11 +10,8 @@ import com.juls.model.Cart;
 import com.juls.model.CartGood;
 import com.juls.model.Good;
 import com.juls.model.User;
-import com.juls.persist.CartDAOImpl;
-import com.juls.persist.GoodDAOImpl;
 import com.juls.persist.HibernateUtil;
-import com.juls.persist.IDAO;
-import com.juls.persist.UserDAOImpl;
+
 
 public class CartService {
 	
@@ -39,28 +36,18 @@ public class CartService {
 		Transaction tr = session.beginTransaction();
 		
 		user = (User)session.get(User.class, user.getId());
-//		System.out.println("user.cart.id=" + user.getUserCart().getId());
 		Cart cart = getCartOrCreateIfNotExist(user);
 		
 		if(isGoodInCart(cart, goodId)) {
-//			System.out.println("Good in cart!");
 			tr.commit();
 			return GOOD_IS_IN_CART;
 		} else {
-//			System.out.println("Good not in cart!");
 			Good good = (Good)session.get(Good.class, goodId);
 			cart.addGood(good);
 			session.saveOrUpdate(cart);
 			session.update(user);
 		}
 		
-//		cartGood.setGoodAmount(1);
-//		cartGood.setGood();
-//		cartGood.setCart(cart);
-//		
-//		cart.getCartGoods().add(cartGood1);
-//		
-//		session.save(cart);
 		tr.commit();
 		
 		return NEW_GOOD_WAS_ADDED;
@@ -68,7 +55,6 @@ public class CartService {
 
 	private boolean isGoodInCart(Cart cart, String goodId) {	
 		List<CartGood> cart2good = cart.getCartGoods();
-//		System.out.println("cart2good.amount=" + cart2good.size());
 		for (CartGood cartGood : cart2good) {
 			if(cartGood.getGood().getId().equals(goodId))
 				return true;
@@ -101,7 +87,8 @@ public class CartService {
 		}
 		
 		List<CartGood> cart2good = cart.getCartGoods();
-		StringBuilder goodsJSON = new StringBuilder("[");
+		StringBuilder goodsJSON = new StringBuilder("{\"id\":\"" + cart.getId() + 
+				"\",\"goods\":[");
 		
 		Good good = null;
 		for (CartGood cartGood : cart2good) {
@@ -109,12 +96,14 @@ public class CartService {
 				goodsJSON.append(",");
 			good = cartGood.getGood();
 			goodsJSON.append("{\"name\":\"" + good.getName() + "\",");
+			goodsJSON.append("\"id\":\"" + good.getId() + "\",");
+			goodsJSON.append("\"amount\":" + cartGood.getGoodAmount() + ",");
 			goodsJSON.append("\"price\":" + good.getPrice() + "}");
 		}
 		
 		tr.commit();
 		
-		goodsJSON.append("]");
+		goodsJSON.append("]}");
 		
 		System.out.println(goodsJSON);
 		
