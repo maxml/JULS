@@ -14,3 +14,9 @@ $(document).ready(function(){
 		$('#composition').text(goodInfoObject["composition"]);
 	});
 });
+
+$('#type').click(function(){
+	lastCategory = $('#type').text();
+	window.localStorage.setItem("category", $('#type').text());
+	window.location = "/main.html";
+});
