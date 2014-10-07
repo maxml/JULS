@@ -72,7 +72,7 @@ public class TestDataController {
 				"Juice", "0.5 litres", "Fresh apple juice.");
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session  session = sessionFactory.getCurrentSession();
+        Session  session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 		
 		session.save(good1);

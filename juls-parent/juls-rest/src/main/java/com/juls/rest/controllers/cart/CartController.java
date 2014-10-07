@@ -25,9 +25,7 @@ public class CartController {
 	
 	@RequestMapping(value = "/put/{itemUUID}", method = RequestMethod.PUT, produces = "application/json")
 	public @ResponseBody String addToCart(@PathVariable("itemUUID") String itemUUID) {
-
 		int answerCode = new CartService().addToCart(currentUser, itemUUID);
-		
 		return "{\"code\":" + answerCode + "}";
 	}
 	
@@ -40,13 +38,24 @@ public class CartController {
 			produces = "application/json", consumes = "application/json")
 	public @ResponseBody String changeGoodAmount(@RequestBody CartStateDeltaDTO cartDelta) {
 		CartStateService cartStateService = new CartStateService();
-		return "{\"answer\":" + cartStateService.changeGoodsAmount(cartDelta) + "}";
+		int answer = cartStateService.changeGoodsAmount(cartDelta);
+		cartStateService.calculateTotalPrice(currentUser, cartDelta.getCartId());
+		return "{\"answer\":" + answer + "}";
 	}
 	
 	@RequestMapping(value = "/item/delete", method = RequestMethod.POST, 
 			produces = "application/json", consumes = "application/json")
 	public @ResponseBody String deleteItemFromCart(@RequestBody CartItemDTO cartItem) {
 		CartStateService cartStateService = new CartStateService();
-		return "{\"answer\":" + cartStateService.deleteItem(cartItem) + "}";
+		int answer = cartStateService.deleteItem(cartItem);
+		cartStateService.calculateTotalPrice(currentUser, cartItem.getCartId());
+		return "{\"answer\":" + answer + "}";
+	}
+	
+	@RequestMapping(value = "{cartUUID}/price", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String getTotalPrice(@PathVariable("cartUUID") String cartUUID) {
+		CartStateService cartStateService = new CartStateService();
+		System.out.println("cartUUID = " + cartUUID);
+		return "{\"totalPrice\":" + cartStateService.getTotalPrice(cartUUID) + "}";
 	}
 }

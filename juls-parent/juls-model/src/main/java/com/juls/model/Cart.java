@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -40,6 +39,9 @@ public class Cart {
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
+    @Column(name = "total_price", nullable = false, columnDefinition = "float default 0.0")
+    private float totalPrice;
+    
 	public List<CartGood> getCartGoods() {
 		return cartGoods;
 	}
@@ -91,5 +93,13 @@ public class Cart {
 	}
 	public void setId(String newId) {
 		this.id = newId;
+	}
+
+	public float getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

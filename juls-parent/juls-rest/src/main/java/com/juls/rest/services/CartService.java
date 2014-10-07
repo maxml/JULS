@@ -36,7 +36,8 @@ public class CartService {
 		Transaction tr = session.beginTransaction();
 		
 		user = (User)session.get(User.class, user.getId());
-		Cart cart = getCartOrCreateIfNotExist(user);
+		Cart cart = getCartOrCreateIfNotExist(user, session);
+		
 		
 		if(isGoodInCart(cart, goodId)) {
 			tr.commit();
@@ -50,6 +51,8 @@ public class CartService {
 		
 		tr.commit();
 		
+		new CartStateService().calculateTotalPrice(user, cart.getId());
+		
 		return NEW_GOOD_WAS_ADDED;
 	}
 
@@ -62,8 +65,9 @@ public class CartService {
 		return false;
 	}
 	
-	private Cart getCartOrCreateIfNotExist(User user) {
-		Cart cart = user.getUserCart();
+	public Cart getCartOrCreateIfNotExist(User user, Session session) {
+		User inTableUser = (User) session.get(User.class, user.getId()); 
+		Cart cart = inTableUser.getUserCart();
 		if(cart == null) {
 			cart = new Cart(Cart.DEFAULT_CART_STATUS);
 			user.setUserCart(cart);
@@ -104,8 +108,6 @@ public class CartService {
 		tr.commit();
 		
 		goodsJSON.append("]}");
-		
-		System.out.println(goodsJSON);
 		
 		return goodsJSON.toString();
 	}

@@ -68,5 +68,6 @@ public class OrderDaoImplTest {
 		assertTrue(orderDao.delete(expectedOrder));
 		assertTrue(orderDao.delete(actualOrder));
 		assertTrue(orderDao.getAll().size() == 0);
+		assertTrue(userDao.delete(user));
 	}
 }

@@ -3,7 +3,6 @@ package com.juls.rest.services;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.juls.model.Cart;
@@ -23,11 +22,11 @@ import com.juls.rest.dto.GoodDeltaDTO;
 public class CartStateService {
 	
 	private static final int SUCCESS = 0;
-	private static final int INVALID_VALUE = -1;
+	private static final int INVALID_ARGUMENT = -1;
 	
 	public int changeGoodsAmount(CartStateDeltaDTO cartStateDelta) {
 		if(cartStateDelta == null)
-			return INVALID_VALUE;
+			return INVALID_ARGUMENT;
 		
 		Cart cart = new CartDAOImpl().getById(cartStateDelta.getCartId());
 		IDAO<Good> goodDAO = new GoodDAOImpl();
@@ -49,7 +48,7 @@ public class CartStateService {
 	
 	public int deleteItem(CartItemDTO cartItem) {
 		if (cartItem == null)
-			return INVALID_VALUE;
+			return INVALID_ARGUMENT;
 		
 		Cart cart = new CartDAOImpl().getById(cartItem.getCartId());
 		Good good = new GoodDAOImpl().getById(cartItem.getItemId());
@@ -64,5 +63,46 @@ public class CartStateService {
 		cartGoodDAO.delete(cartGood);
 		
 		return SUCCESS;
+	}
+	
+	public float getTotalPrice(String cartId) {
+		if(cartId == null)
+			return INVALID_ARGUMENT;
+		
+		System.out.println("cartId = " + cartId);
+		
+		IDAO<Cart> cartDAO = new CartDAOImpl();
+		Cart cart = cartDAO.getById(cartId); 
+		
+		if(cart != null)
+			return cart.getTotalPrice();
+		else {
+			System.out.println("cart is null");
+			return 0;
+		}
+			
+	}
+	
+	public void calculateTotalPrice(User user, String cartId) {
+		if(cartId == null)
+			return;
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		Cart cart = new CartService().getCartOrCreateIfNotExist(user, session);
+		
+		float newTotalPrice = 0;
+		List<CartGood> cartGoods = cart.getCartGoods();
+		
+		for (CartGood cartGood : cartGoods) {
+			newTotalPrice += cartGood.getGood().getPrice() * cartGood.getGoodAmount();
+		}
+		
+		cart.setTotalPrice(newTotalPrice);
+		session.update(cart);
+		
+		transaction.commit();
+		session.close();
 	}
 }

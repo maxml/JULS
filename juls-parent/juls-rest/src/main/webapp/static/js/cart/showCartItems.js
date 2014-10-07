@@ -24,6 +24,7 @@ function addItemsOnPage(data) {
 	for (var i = 0; i < goods.length; i++) {
 		addRow(goods[i], i);
 	}
+	getTotalPrice(data["id"]);
 	createChangeCartStateButton();
 	createBuyButton();
 }
@@ -35,7 +36,7 @@ function addCartIdAttribute(data) {
 function createEmptyTable() {
 	$("#item-container").html("<table><thead><tr><td><b>Name</b></td>" + 
 			"<td><b>Price per one</b></td><td><b>Amount</b></td><td><b>Delete item</b></td></tr></thead>" + 
-			"<tfoot><tr><td colspan='4' id='total-price'><b>Total price: </b></tr></tfoot>" + 
+			"<tfoot><tr><td colspan='4' id='total-price'></tr></tfoot>" + 
 			"<tbody></tbody></table>");
 }
 
@@ -54,4 +55,21 @@ function createChangeCartStateButton() {
 
 function createBuyButton() {
 	$("#item-container").append("<button id='btn-buy'>Buy</button>");
+}
+
+function getTotalPrice(cartId) {
+	$.ajax({
+		type: 'GET',
+		url: "/cart/" + cartId + "/price",
+		async: true,
+		contentType: "x-www-form-urlencoded; charset=UTF-8"
+	}).done(function(response) {
+		if(response !== null || response !== undefined) {
+			$('#total-price').html('');
+			$('#total-price').html("Total price: <b>$ " + response["totalPrice"] + "</b>");
+		}
+		else {
+			alert("alert!");
+		}
+	});
 }

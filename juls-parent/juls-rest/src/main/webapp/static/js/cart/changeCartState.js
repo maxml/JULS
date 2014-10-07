@@ -18,8 +18,10 @@ function deleteItem(rowId, itemId) {
 	    contentType: "application/json", 
 	    data: JSON.stringify(item), 
 	    success: function(result) {
-	        if(result["answer"] === 0)
+	        if(result["answer"] === 0) {
 	        	deleteTableRow(rowId);
+	        	getTotalPrice(item["cartId"]);
+	        }
 	    }
 	});
 }
@@ -32,10 +34,6 @@ function deleteTableRow(rowId) {
 	}
 }
 
-function deleteTableIfEmpty() {
-	
-}
-
 function sendNewCartState() {
 	var cartState = formCartState();
 	var jsonString = JSON.stringify(cartState);
@@ -46,7 +44,7 @@ function sendNewCartState() {
 	    contentType: "application/json", 
 	    data: jsonString, 
 	    success: function(result) {
-	        alert('Amount was changed!');
+	        getTotalPrice(cartState["cartId"]);
 	    }    
 	});
 }
