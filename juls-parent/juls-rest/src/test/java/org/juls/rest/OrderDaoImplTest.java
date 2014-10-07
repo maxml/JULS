@@ -40,8 +40,11 @@ public class OrderDaoImplTest {
 		cartDao = new CartDAOImpl();
 		orderDao = new OrderDAOImpl();
 		
-		user = userDao.getByEmail("user2@gmail.com");		
-		cart = (Cart) cartDao.getAll().get(0);
+		userDao.insert(new User("testuser@mail.com", "testpass"));		
+		user = userDao.getByEmail("testuser@mail.com");
+		cartDao.insert(new Cart(2));		
+		cart = cartDao.getAll().get(0);
+		
 		expectedOrder = new Order(user, cart);
 		id = expectedOrder.getId();
 		assertTrue(orderDao.insert(expectedOrder));
@@ -62,5 +65,6 @@ public class OrderDaoImplTest {
 		assertTrue(orderDao.delete(actualOrder));
 		assertTrue(orderDao.getAll().size() == 0);
 		assertTrue(userDao.delete(user));
+		assertTrue(cartDao.delete(cart));
 	}
 }
