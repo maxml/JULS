@@ -14,6 +14,7 @@ import com.juls.rest.dto.CartItemDTO;
 import com.juls.rest.dto.CartStateDeltaDTO;
 import com.juls.rest.services.CartService;
 import com.juls.rest.services.CartStateService;
+import com.juls.rest.services.Redirector;
 
 @Controller
 @RequestMapping(value = "/cart")
@@ -48,5 +49,22 @@ public class CartController {
 	public @ResponseBody String deleteItemFromCart(@RequestBody CartItemDTO cartItem) {
 		CartStateService cartStateService = new CartStateService();
 		return "{\"answer\":" + cartStateService.deleteItem(cartItem) + "}";
+	}
+	
+
+	/*
+	 * RequestMapping for /order. 
+	 * @autor Matvey Mitnitskyi 
+	 * Creates order of current User and put current curt inside. Redirecting to .../order.html
+	 */
+	@RequestMapping(value = "/order", method = RequestMethod.POST,
+			headers = "Accept=*/*", produces = "application/json")
+	public String createOrder() {
+		if(new CartService().createOrder(currentUser)) {
+			return  Redirector.redirectToOrder();
+		}
+		else {
+			return "Failed to create order!";
+		}
 	}
 }
