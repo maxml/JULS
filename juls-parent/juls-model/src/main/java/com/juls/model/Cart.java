@@ -26,7 +26,7 @@ public class Cart {
 	public static final int DEFAULT_CART_STATUS = 1;
 	
 	@Id
-	@Column(nullable = false, unique = true)
+	@Column(name="cart_id", nullable = false, unique = true)
 	private String id;
 	
 	@Column(nullable = false)
@@ -35,8 +35,8 @@ public class Cart {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id.cart", cascade = CascadeType.ALL)
 	private List<CartGood> cartGoods;
 	
-    @OneToOne
-	@JoinColumn(name = "order_id")
+    @OneToOne(mappedBy="cart")
+	@JoinColumn
 	private Order order;
 	
     @Column(name = "total_price", nullable = false, columnDefinition = "float default 0.0")
@@ -76,13 +76,13 @@ public class Cart {
 		return status;
 	}
 	
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	
-	public Order getOrder() {
-		return order;
-	}
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
+//	
+//	public Order getOrder() {
+//		return order;
+//	}
 
 	public void setStatus(int status) {
 		this.status = status;

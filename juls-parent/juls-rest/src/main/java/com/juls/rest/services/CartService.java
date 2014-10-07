@@ -2,6 +2,7 @@ package com.juls.rest.services;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 import com.juls.model.Cart;
 import com.juls.model.CartGood;
 import com.juls.model.Good;
+import com.juls.model.Order;
 import com.juls.model.User;
 import com.juls.persist.HibernateUtil;
 
@@ -111,4 +113,30 @@ public class CartService {
 		
 		return goodsJSON.toString();
 	}
+	
+	public boolean createOrder(User currentUser){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		String id = currentUser.getId();
+		
+		try {
+		
+			Query query = session.createQuery(" from User user where id = '"+id+"' ");
+		    User user = (User) query.list().get(0);    
+		    Cart cart = user.getUserCart();
+		    
+		    Order order = new Order(currentUser, cart);
+		    order.setUser(currentUser);
+		    session.save(order);
+			
+		    tr.commit();
+			return true;
+		} catch(Exception ex){
+			
+			tr.rollback();
+			return false;	
+			
+		}
+	}
 }
+	

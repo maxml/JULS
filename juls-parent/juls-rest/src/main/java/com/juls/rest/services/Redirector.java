@@ -23,6 +23,10 @@ public class Redirector {
 		return "redirect:" + domain + "/cabinet.html";
 	}
 	
+	public static String redirectToOrder(){
+		return "redirect:" + domain + "/order.html";
+	}
+	
 	public static String getEmailConfirmLink(String token){
 		return domain + "/new/validate/" + token; //TODO: encode, decode token
 	}

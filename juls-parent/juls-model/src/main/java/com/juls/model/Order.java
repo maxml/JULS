@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -60,28 +61,28 @@ public class Order implements Serializable{
 	public final static int ACCOMPLISHED_ORDER_STATUS = 2;
 	public final static String DEFAULT_PAYMENT_TYPE = "not-established";
 	
-	@Id
+	@Id  
 	@Column(nullable = false)
 	private String orders_id;
 	
 	@OneToOne
-	@JoinColumn(name = "cart_id")
-	private Cart cart;
+	 @JoinColumn(name = "cart_id")
+	 private Cart cart;
 	
 	@Column(name = "numb", unique = true, nullable = false)
 	private String orderNumber;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	@JoinColumn(name = "user_id")	
 	private User user;
 	
 	@Column(name="payment_type", nullable = false)
 	private String paymentType;
 
-	@Column (name = "status", nullable = false)
+	@Column (name = "status")
 	private int orderStatus;
 	
-	@Column (name = "total")
+	@Column (name = "total", nullable = false)
 	private float totalPrice;
 	
 	public void setId(String id) {

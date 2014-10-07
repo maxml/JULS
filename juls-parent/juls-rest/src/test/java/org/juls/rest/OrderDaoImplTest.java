@@ -40,30 +40,23 @@ public class OrderDaoImplTest {
 		cartDao = new CartDAOImpl();
 		orderDao = new OrderDAOImpl();
 		
-		userDao.insert(new User("testuser@mail.com", "testpass"));
-		user = userDao.getByEmail("testuser@mail.com"); 
-		
-		cartDao.insert(new Cart(2));
-		cart = cartDao.getAll().get(0);
-		
-		/*Create new Order */
+		user = userDao.getByEmail("user2@gmail.com");		
+		cart = (Cart) cartDao.getAll().get(0);
 		expectedOrder = new Order(user, cart);
 		id = expectedOrder.getId();
-		
 		assertTrue(orderDao.insert(expectedOrder));
 	}
 
 	@Test
 	public void getByIdTest() throws Exception{
-		
 		actualOrder = new Order();
 		actualOrder = orderDao.getById(id);
-		
 		assertEquals(expectedOrder.getId(), actualOrder.getId());
 	}
 	
 	@After 
 	public void deleteTest() throws Exception{
+		
 		
 		assertTrue(orderDao.delete(expectedOrder));
 		assertTrue(orderDao.delete(actualOrder));
