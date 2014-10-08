@@ -27,6 +27,10 @@ $(document).ready(function(){
 });
 
 
+$('.mainHeader').click(function(){
+	window.location = "main.html";
+});
+
 var lastCategory = "all";
 
 $('.categories').click(function(){
@@ -41,6 +45,47 @@ $('.categories').click(function(){
 			showGoods(answer);
 		}
 	});
+});
+
+
+$('.catmenu ul').click(function(event){
+	event.stopPropagation();
+}).on('click', '.catmenuitem', function(event){
+	event.stopPropagation();
+	var itemId = $(this).attr("data-item-id");
+	ShowSelectedGood(itemId);
+});
+
+var next;
+
+$('.catmenu').click(function(){
+	var clickCount = $(this).attr("data-clicks");
+	next = $(this).children("ul");
+	if (clickCount === "0"){
+		$(this).attr("data-clicks", "1"); //increments clicks count
+	}
+	else if (clickCount === "1"){
+		$(this).attr("data-clicks", "2"); //increments clicks count
+	}
+	
+	if ($(this).attr("data-clicks") !== "2"){
+		$.ajax({
+			type:'GET',
+			url: '../../goods/byCat/' + $(this).text(),
+			async: true,
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			success:function(answer){
+				for (var i = 0; i < answer.length; i++){
+					next.append('<li class="catmenuitem" data-item-id="' + answer[i]["id"] + '">' + answer[i]["name"] + "</li>");
+				}
+				
+			}
+		});
+	}
+	else{
+		$(this).attr("data-clicks", "0");
+		next.empty();
+	}
 });
 
 var arrowDownSign = "%u2191";

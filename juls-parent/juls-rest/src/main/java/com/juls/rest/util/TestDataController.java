@@ -68,8 +68,20 @@ public class TestDataController {
 		Good good2 = new Good("Good2", 5.4f, "This is a test description for the second good.",
 				"Salads", "100g", "cheese, cabbage leaves, beans, salad leaves, salt");
 		
-		Good good3 = new Good("Good3", 12.3f, "This is a test description fot the third good.",
+		Good good3 = new Good("Apple juice", 12.3f, "This is a test description fot the third good.",
 				"Juice", "0.5 litres", "Fresh apple juice.");
+		
+		Good good4 = new Good("Orange Juice", 11.35f, "This is a test description fot the fourth good.",
+				"Juice", "0.5 litres", "Fresh orange juice.");
+		
+		Good good5 = new Good("Grapes Juice", 14.15f, "This is a test description fot the fifth good.",
+				"Juice", "0.5 litres", "Fresh grapes juice.");
+		
+		Good good6 = new Good("Banana", 23.45f, "This is a test description fot the sixth good.",
+				"Fruits", "1kg", "Banaaaaanas");
+		
+		Good good7 = new Good("Tomato", 8.55f, "This is a test description fot the seventh good.",
+				"Vegetables", "1kg", "Fresh juicy tomatoes");
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session  session = sessionFactory.getCurrentSession();
@@ -78,6 +90,10 @@ public class TestDataController {
 		session.save(good1);
 		session.save(good2);
 		session.save(good3);
+		session.save(good4);
+		session.save(good5);
+		session.save(good6);
+		session.save(good7);
 		
 //		goodDAO.insert(good1);
 //		goodDAO.insert(good2);
