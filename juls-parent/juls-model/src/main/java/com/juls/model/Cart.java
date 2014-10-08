@@ -9,7 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -24,7 +26,7 @@ public class Cart {
 	public static final int DEFAULT_CART_STATUS = 1;
 	
 	@Id
-	@Column(nullable = false, unique = true)
+	@Column(name="cart_id", nullable = false, unique = true)
 	private String id;
 	
 	@Column(nullable = false)
@@ -33,6 +35,13 @@ public class Cart {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id.cart", cascade = CascadeType.ALL)
 	private List<CartGood> cartGoods;
 	
+    @OneToOne(mappedBy="cart")
+	@JoinColumn
+	private Order order;
+	
+    @Column(name = "total_price", nullable = false, columnDefinition = "float default 0.0")
+    private float totalPrice;
+    
 	public List<CartGood> getCartGoods() {
 		return cartGoods;
 	}
@@ -66,6 +75,14 @@ public class Cart {
 	public int getStatus() {
 		return status;
 	}
+	
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
+//	
+//	public Order getOrder() {
+//		return order;
+//	}
 
 	public void setStatus(int status) {
 		this.status = status;
@@ -76,5 +93,13 @@ public class Cart {
 	}
 	public void setId(String newId) {
 		this.id = newId;
+	}
+
+	public float getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

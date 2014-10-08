@@ -2,6 +2,7 @@ package com.juls.rest.services;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,12 +10,10 @@ import org.hibernate.Transaction;
 import com.juls.model.Cart;
 import com.juls.model.CartGood;
 import com.juls.model.Good;
+import com.juls.model.Order;
 import com.juls.model.User;
-import com.juls.persist.CartDAOImpl;
-import com.juls.persist.GoodDAOImpl;
 import com.juls.persist.HibernateUtil;
-import com.juls.persist.IDAO;
-import com.juls.persist.UserDAOImpl;
+
 
 public class CartService {
 	
@@ -39,36 +38,28 @@ public class CartService {
 		Transaction tr = session.beginTransaction();
 		
 		user = (User)session.get(User.class, user.getId());
-//		System.out.println("user.cart.id=" + user.getUserCart().getId());
-		Cart cart = getCartOrCreateIfNotExist(user);
+		Cart cart = getCartOrCreateIfNotExist(user, session);
+		
 		
 		if(isGoodInCart(cart, goodId)) {
-//			System.out.println("Good in cart!");
 			tr.commit();
 			return GOOD_IS_IN_CART;
 		} else {
-//			System.out.println("Good not in cart!");
 			Good good = (Good)session.get(Good.class, goodId);
 			cart.addGood(good);
 			session.saveOrUpdate(cart);
 			session.update(user);
 		}
 		
-//		cartGood.setGoodAmount(1);
-//		cartGood.setGood();
-//		cartGood.setCart(cart);
-//		
-//		cart.getCartGoods().add(cartGood1);
-//		
-//		session.save(cart);
 		tr.commit();
+		
+		new CartStateService().calculateTotalPrice(user, cart.getId());
 		
 		return NEW_GOOD_WAS_ADDED;
 	}
 
 	private boolean isGoodInCart(Cart cart, String goodId) {	
 		List<CartGood> cart2good = cart.getCartGoods();
-//		System.out.println("cart2good.amount=" + cart2good.size());
 		for (CartGood cartGood : cart2good) {
 			if(cartGood.getGood().getId().equals(goodId))
 				return true;
@@ -76,8 +67,9 @@ public class CartService {
 		return false;
 	}
 	
-	private Cart getCartOrCreateIfNotExist(User user) {
-		Cart cart = user.getUserCart();
+	public Cart getCartOrCreateIfNotExist(User user, Session session) {
+		User inTableUser = (User) session.get(User.class, user.getId()); 
+		Cart cart = inTableUser.getUserCart();
 		if(cart == null) {
 			cart = new Cart(Cart.DEFAULT_CART_STATUS);
 			user.setUserCart(cart);
@@ -101,7 +93,8 @@ public class CartService {
 		}
 		
 		List<CartGood> cart2good = cart.getCartGoods();
-		StringBuilder goodsJSON = new StringBuilder("[");
+		StringBuilder goodsJSON = new StringBuilder("{\"id\":\"" + cart.getId() + 
+				"\",\"goods\":[");
 		
 		Good good = null;
 		for (CartGood cartGood : cart2good) {
@@ -109,15 +102,41 @@ public class CartService {
 				goodsJSON.append(",");
 			good = cartGood.getGood();
 			goodsJSON.append("{\"name\":\"" + good.getName() + "\",");
+			goodsJSON.append("\"id\":\"" + good.getId() + "\",");
+			goodsJSON.append("\"amount\":" + cartGood.getGoodAmount() + ",");
 			goodsJSON.append("\"price\":" + good.getPrice() + "}");
 		}
 		
 		tr.commit();
 		
-		goodsJSON.append("]");
-		
-		System.out.println(goodsJSON);
+		goodsJSON.append("]}");
 		
 		return goodsJSON.toString();
 	}
+	
+	public boolean createOrder(User currentUser){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		String id = currentUser.getId();
+		
+		try {
+		
+			Query query = session.createQuery(" from User user where id = '"+id+"' ");
+		    User user = (User) query.list().get(0);    
+		    Cart cart = user.getUserCart();
+		    
+		    Order order = new Order(currentUser, cart);
+		    order.setUser(currentUser);
+		    session.save(order);
+			
+		    tr.commit();
+			return true;
+		} catch(Exception ex){
+			
+			tr.rollback();
+			return false;	
+			
+		}
+	}
 }
+	

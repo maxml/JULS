@@ -52,7 +52,16 @@ public class CartDAOImpl implements IDAO<Cart> {
 	}
 
 	public boolean delete(Cart value) {
-		throw new UnsupportedOperationException();
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		try{
+			session.delete(value);
+			tr.commit();
+			return true;
+		}
+		catch(Exception ex){
+			return false;
+		}
 	}
 
 	

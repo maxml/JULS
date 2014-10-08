@@ -84,7 +84,7 @@ public class TestDataController {
 				"Vegetables", "1kg", "Fresh juicy tomatoes");
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session  session = sessionFactory.getCurrentSession();
+        Session  session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 		
 		session.save(good1);
