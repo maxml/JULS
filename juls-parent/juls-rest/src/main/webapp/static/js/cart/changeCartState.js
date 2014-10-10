@@ -1,5 +1,8 @@
 $('#item-container').on('click', 'button#btn-change-cart-state', function() {
-	sendNewCartState();
+	var currentValue = $('#itemsCount').val();
+	if (currentValue.indexOf("-") == -1){
+		sendNewCartState();
+	}
 });
 
 $('#item-container').on('click', 'button.btn-delete-item-from-cart', function() {

@@ -1,18 +1,14 @@
 package org.juls.rest;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.juls.model.Cart;
-import com.juls.model.Good;
 import com.juls.model.Order;
 import com.juls.model.User;
 import com.juls.persist.CartDAOImpl;
-import com.juls.persist.GoodDAOImpl;
 import com.juls.persist.OrderDAOImpl;
 import com.juls.persist.UserDAOImpl;
 
@@ -22,7 +18,7 @@ import static org.junit.Assert.*;
  * 
  * Test for OrderDAOimpl
  * @author Matvey Mitnitskyi
- *
+ * 
  */
 
 public class OrderDaoImplTest {
@@ -35,6 +31,7 @@ public class OrderDaoImplTest {
 	private String id;
 	
 	@Before
+	@Ignore
 	public void insertTest() throws Exception {
 		userDao = new UserDAOImpl();
 		cartDao = new CartDAOImpl();
@@ -51,6 +48,7 @@ public class OrderDaoImplTest {
 	}
 
 	@Test
+	@Ignore
 	public void getByIdTest() throws Exception{
 		actualOrder = new Order();
 		actualOrder = orderDao.getById(id);
@@ -58,6 +56,7 @@ public class OrderDaoImplTest {
 	}
 	
 	@After 
+	@Ignore
 	public void deleteTest() throws Exception{
 		
 		
