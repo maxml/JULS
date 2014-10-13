@@ -54,7 +54,7 @@ function createChangeCartStateButton() {
 }
 
 function createBuyButton() {
-	$("#item-container").append("<button id='btn-buy'>Buy</button>");
+	$("#item-container").append("<button id='btn-buy' >Buy</button>");
 }
 
 function getTotalPrice(cartId) {

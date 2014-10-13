@@ -47,7 +47,7 @@ public class OrderDAOImpl implements IDAO<Order> {
 		return resultUser;
 	}
 
-	public boolean insert( Order value) {	
+	public boolean insert(Order value) {	
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
 		
@@ -64,13 +64,11 @@ public class OrderDAOImpl implements IDAO<Order> {
 
 	public boolean update(Order value) {
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tr;
-		if (session.getTransaction() == null)
-			tr = session.beginTransaction();
-		else 
-			tr = session.getTransaction();	
+		Transaction tr = session.beginTransaction();
+		
 		try{
 			session.update(value);
+			if(!tr.wasCommitted())
 			tr.commit();
 			return true;
 		}
@@ -98,7 +96,10 @@ public class OrderDAOImpl implements IDAO<Order> {
 	public Order getOrderByUser(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
-		Query query = session.createQuery("from Order order WHERE order.user='"+user+"'");
+		
+		String userID = user.getId();
+		Query query = session.createQuery("from Order order "
+				+ "WHERE user_id='"+userID+"'");
 		Order resultOrder = null;
 		try{
 			resultOrder = (Order) query.list().get(0);
@@ -110,10 +111,33 @@ public class OrderDAOImpl implements IDAO<Order> {
 		return resultOrder;
 	}
 	
+	public Order getOrderByUser(User user, int status) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		Order resultOrder = null; 
+		try{
+		String userID = user.getId();
+		Query query = session.createQuery("from Order"
+				+ " WHERE user_id='"+userID+"' and status ="+status+"");
+		
+			resultOrder = (Order) query.list().get(0);
+			
+			if(!tr.wasCommitted());
+			tr.commit();
+			return resultOrder;
+		}
+		catch(Exception ex){
+			System.err.println(ex.getMessage());
+			tr.rollback();			
+			return resultOrder;
+		}
+		
+	}
+	
 	public Order getOrderByNumber (String number) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
-		Query query = session.createQuery("from Order order WHERE order.order_num='"+number+"'");
+		Query query = session.createQuery("from Order WHERE order_num='"+number+"'");
 		Order resultOrder = null;
 		try{
 			resultOrder = (Order) query.list().get(0);

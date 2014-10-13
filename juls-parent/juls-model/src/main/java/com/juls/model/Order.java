@@ -11,20 +11,16 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;  
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +34,8 @@ import org.springframework.stereotype.Component;
 
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", 
+uniqueConstraints=@UniqueConstraint(columnNames="numb"))
 @Component
 @Scope("session")
 public class Order implements Serializable{
@@ -51,7 +48,7 @@ public class Order implements Serializable{
 		this.cart = cart;
 		setId(UUID.randomUUID().toString());
 		setDefaultOrderStatus();
-		setOrderNum(UUID.randomUUID().toString());
+		setOrderNumb(UUID.randomUUID().toString());
 		setPaymentType(DEFAULT_PAYMENT_TYPE);
 		setUser(user);
 	}
@@ -59,16 +56,21 @@ public class Order implements Serializable{
 	public final static int UNCONFIRMED_ORDER_STATUS = -1;
 	public final static int CONFIRMED_ORDER_STATUS = 1;
 	public final static int ACCOMPLISHED_ORDER_STATUS = 2;
-	public final static String DEFAULT_PAYMENT_TYPE = "not-established";
+	public final static int INACTIVE_ORDER_STATUS = 0;
 	
-	@Id  
+	public final static String DEFAULT_PAYMENT_TYPE = "not-established";
+	public final static String CASH = "cash";
+	public final static String LYQ_PAY = "lyq-pay";
+	public final static String PAYPALL = "paypall";
+	
+	@Id 
 	@Column(nullable = false)
 	private String orders_id;
 	
 	@OneToOne
 	 @JoinColumn(name = "cart_id")
 	 private Cart cart;
-	
+		
 	@Column(name = "numb", unique = true, nullable = false)
 	private String orderNumber;
 	
@@ -82,9 +84,6 @@ public class Order implements Serializable{
 	@Column (name = "status")
 	private int orderStatus;
 	
-	@Column (name = "total", nullable = false)
-	private float totalPrice;
-	
 	public void setId(String id) {
 		this.orders_id = id;
 	}
@@ -93,11 +92,11 @@ public class Order implements Serializable{
 		return orders_id;
 	}
 	
-	public void setOrderNum(String orderNum) {
-		this.orderNumber = orderNum;
+	public void setOrderNumb(String orderNumb) {
+		this.orderNumber = orderNumb;
 	}
 	
-	public String getOrderNum() {
+	public String getOrderNumb() {
 		return orderNumber;
 	}
 	
@@ -107,6 +106,14 @@ public class Order implements Serializable{
 	
 	public User getUser() {
 		return user;
+	}
+	
+	public void setStatus(int status) {
+		this.orderStatus = status;
+	}
+	
+	public int getStatus() {
+		return orderStatus;
 	}
 	
 	public void setCurrentCart (Cart cart) {
@@ -123,18 +130,6 @@ public class Order implements Serializable{
 	
 	public String getPaymentType() {
 		return paymentType;
-	}
-	
-	public float getTotalPrice() {
-		return totalPrice;
-	}
-	
-	public void setOrderStatus(int orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-	
-	public int getOrderStatus() {
-		return orderStatus;
 	}
 	
 	public void setDefaultOrderStatus() {

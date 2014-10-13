@@ -1,5 +1,6 @@
 package com.juls.rest.services;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -12,7 +13,10 @@ import com.juls.model.CartGood;
 import com.juls.model.Good;
 import com.juls.model.Order;
 import com.juls.model.User;
+import com.juls.persist.CartDAOImpl;
 import com.juls.persist.HibernateUtil;
+import com.juls.persist.IDAO;
+import com.juls.persist.OrderDAOImpl;
 
 
 public class CartService {
@@ -73,6 +77,7 @@ public class CartService {
 		if(cart == null) {
 			cart = new Cart(Cart.DEFAULT_CART_STATUS);
 			user.setUserCart(cart);
+			session.update(user);
 		}
 		return cart;
 	}	
@@ -125,18 +130,43 @@ public class CartService {
 		    User user = (User) query.list().get(0);    
 		    Cart cart = user.getUserCart();
 		    
-		    Order order = new Order(currentUser, cart);
-		    order.setUser(currentUser);
-		    session.save(order);
-			
+		    Order order = new Order(user , cart);
+		    		    
+//		    if (!(new OrderDAOImpl().insert(order)))
+//		    	new OrderDAOImpl().update(order);
+		    
+		    new OrderDAOImpl().insert(order);
+		    
 		    tr.commit();
 			return true;
-		} catch(Exception ex){
 			
+		} catch(Exception ex){			
 			tr.rollback();
 			return false;	
 			
 		}
 	}
+	
+	/*
+	 *  Method looks through all orders 
+	 * and return true if some order already using current cart;
+	 */
+	
+	public boolean isCartInOrders(Cart cart) {
+		
+		List <Order> ordersList = new OrderDAOImpl().getAll();
+		System.out.println(ordersList.toString());
+		Iterator<Order> itr = ordersList.listIterator();
+		boolean flag = false;
+		
+			while(itr.hasNext()) {
+				Order actualOrder = itr.next();
+				if (actualOrder.getCurrentCart().getId().equals(cart.getId())){
+					flag = true;
+					}
+			}
+				return flag;
+		}
+		
 }
 	

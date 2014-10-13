@@ -1,5 +1,6 @@
 package org.juls.rest;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -37,14 +38,25 @@ public class OrderDaoImplTest {
 		cartDao = new CartDAOImpl();
 		orderDao = new OrderDAOImpl();
 		
+		/*Inserting test data*/
 		userDao.insert(new User("testuser@mail.com", "testpass"));		
 		user = userDao.getByEmail("testuser@mail.com");
-		cartDao.insert(new Cart(2));		
-		cart = cartDao.getAll().get(0);
 		
+		/*
+		 * Creating cart with TEST_CART_STATUS (111)
+		 * prevents deleting wrong data while test
+		 * executing.
+		 */
+		cartDao.insert(new Cart(111));		
+		List <Cart> cartList = cartDao.getAll();
+		for(Cart cartIterator : cartList) {
+			if (cartIterator.getStatus() == 111) 
+				cart = cartIterator;
+		}
+	
 		expectedOrder = new Order(user, cart);
 		id = expectedOrder.getId();
-		assertTrue(orderDao.insert(expectedOrder));
+			assertTrue(orderDao.insert(expectedOrder));
 	}
 
 	@Test
@@ -61,7 +73,6 @@ public class OrderDaoImplTest {
 		
 		
 		assertTrue(orderDao.delete(expectedOrder));
-		assertTrue(orderDao.delete(actualOrder));
 		assertTrue(orderDao.getAll().size() == 0);
 		assertTrue(userDao.delete(user));
 		assertTrue(cartDao.delete(cart));

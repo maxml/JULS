@@ -10,6 +10,16 @@ $('#item-container').on('click', 'button.btn-delete-item-from-cart', function() 
 	deleteTableIfEmpty();
 });
 
+$('#item-container').on('click', 'button#btn-buy', function() {
+	$.ajax({
+		type: 'POST',
+		url: "/cart/order",
+		async: true,
+		success: window.location = 'order.html',
+		contentType: "x-www-form-urlencoded; charset=UTF-8"
+	});
+});
+
 function deleteItem(rowId, itemId) {
 	var item = new Object();
 	item.cartId = $("#item-container").attr("data-cart-id");

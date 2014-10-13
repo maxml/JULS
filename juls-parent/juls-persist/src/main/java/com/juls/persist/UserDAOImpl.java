@@ -87,6 +87,7 @@ public class UserDAOImpl implements IDAO<User>{
 		return resultUser;
 	}
 	
+	
 	public User getByToken(String token){
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();

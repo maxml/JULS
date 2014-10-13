@@ -60,6 +60,7 @@ public class CartDAOImpl implements IDAO<Cart> {
 			return true;
 		}
 		catch(Exception ex){
+			System.err.println(ex.getMessage());
 			return false;
 		}
 	}
