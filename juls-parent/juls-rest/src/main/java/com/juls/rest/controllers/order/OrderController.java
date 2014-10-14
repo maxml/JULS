@@ -19,8 +19,13 @@ public class OrderController {
 	@Autowired
 	User currentUser;
 	
+//	@RequestMapping(value = "/cartId", method = RequestMethod.GET, produces = "application/json")
+//	public @ResponseBody String getCartId() {
+//		
+//	}
+	
 	@RequestMapping(value = "/confirm", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody String showAllItems() {
+	public @ResponseBody String сonfirm() {
 		if(new OrderService().sendConfirmationEmail(currentUser))
 			return "{\"message :\" Your order has been processed,"
 					+ " please check your e-mail!}";

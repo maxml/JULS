@@ -14,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 
+import com.juls.model.Cart;
 import com.juls.model.User;
 import com.juls.model.UserDetails;
 import com.juls.persist.UserDAOImpl;
@@ -24,6 +25,7 @@ public class RegistrationService {
 	public User register(String email, String pass1, String pass2){
 		if (pass1.equals(pass2)){
 			User newUser = new User(email, pass1);
+			newUser.setUserCart(new Cart(Cart.DEFAULT_CART_STATUS));
 			newUser.setAdditionalInfo(new UserDetails("", "", "", ""));
 			return newUser;
 		}
@@ -31,6 +33,7 @@ public class RegistrationService {
 	}
 	
 	public boolean save(User user){
+		
 		user.setToken(UUID.randomUUID().toString()); //token 4 email verification
 		return new UserDAOImpl().insert(user);
 	}
