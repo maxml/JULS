@@ -1,10 +1,23 @@
 $('#item-container').on('click', 'button#btn-change-cart-state', function() {
-	sendNewCartState();
+	var currentValue = $('#itemsCount').val();
+	if (currentValue.indexOf("-") == -1){
+		sendNewCartState();
+	}
 });
 
 $('#item-container').on('click', 'button.btn-delete-item-from-cart', function() {
 	deleteItem($(this).attr('data-row-id'), $(this).attr('data-item-id'));
 	deleteTableIfEmpty();
+});
+
+$('#item-container').on('click', 'button#btn-buy', function() {
+	$.ajax({
+		type: 'POST',
+		url: "/cart/order",
+		async: true,
+		success: window.location = 'order.html',
+		contentType: "x-www-form-urlencoded; charset=UTF-8"
+	});
 });
 
 function deleteItem(rowId, itemId) {

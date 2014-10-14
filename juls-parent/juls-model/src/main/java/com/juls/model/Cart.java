@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Scope;
 public class Cart {
 	
 	public static final int DEFAULT_CART_STATUS = 1;
+	public static final int TEST_CART_STATUS = 111;
 	
 	@Id
 	@Column(name="cart_id", nullable = false, unique = true)
@@ -76,13 +77,13 @@ public class Cart {
 		return status;
 	}
 	
-//	public void setOrder(Order order) {
-//		this.order = order;
-//	}
-//	
-//	public Order getOrder() {
-//		return order;
-//	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
+	public Order getOrder() {
+		return order;
+	}
 
 	public void setStatus(int status) {
 		this.status = status;

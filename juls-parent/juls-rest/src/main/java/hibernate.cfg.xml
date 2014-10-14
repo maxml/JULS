@@ -9,10 +9,11 @@
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/juls</property>
+ 
         <property name="connection.username">juls_admin</property>
         <property name="connection.password">password</property>
  
-        <!-- SQL dialect -->
+         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
  
         <!-- JDBC connection pool (use the built-in) -->

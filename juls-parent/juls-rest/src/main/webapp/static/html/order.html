@@ -6,8 +6,18 @@
 </head>
 <body>
 	<div>
-		<h2>Manage Your Order Here</h2>
+		<h2>Manage Your Order Here</h2>		
 	</div>	
-
+	<form action="/order/confirm" method = "get">	
+	
+			 <!-- Here must be confirmation button 
+	 		which calls the message & redirects to main page  -->
+	 
+	 	<input type="submit" id="confBut" value="Confirm"></input>
+		</form>
+			<!-- Denying order button -->
+		<input id="back" onclick="location.href = 'cart.html'" type="button" value="Back">
 </body>
+	<script src = 'static/js/jquery-2.1.1.min.js'></script>
+	<script src = 'static/js/order/showOrder.js'></script>
 </html>

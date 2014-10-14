@@ -43,7 +43,7 @@ function createEmptyTable() {
 function addRow(item, number) {
 	$("#item-container tbody").append("<tr id='row-item-" + number + "'><td>" + item["name"] + 
 			"</td><td>$ " + item["price"] + 
-			"</td><td><input type='number' min='1' max='9223372036854775807' value='" + 
+			"</td><td><input id='itemsCount' type='number' min='1' max='9223372036854775807' value='" + 
 			item["amount"] + "' data-item-id='" + item["id"] + "'></td>" + 
 			"<td><button class='btn-delete-item-from-cart' data-item-id='" + item["id"] + 
 			"' data-row-id='row-item-" + number + "'>Delete</button></td></tr>");
@@ -54,7 +54,7 @@ function createChangeCartStateButton() {
 }
 
 function createBuyButton() {
-	$("#item-container").append("<button id='btn-buy'>Buy</button>");
+	$("#item-container").append("<button id='btn-buy' >Buy</button>");
 }
 
 function getTotalPrice(cartId) {
