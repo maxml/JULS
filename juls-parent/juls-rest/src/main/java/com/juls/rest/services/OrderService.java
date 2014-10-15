@@ -29,10 +29,16 @@ import com.juls.persist.UserDAOImpl;
 
 @Service
 public class OrderService {
-	public boolean confirm(Order usersOrder) {
-		return false;
-	}
+	
 	SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
+	
+//	public Cart getCurrentCart(User user) {
+//		org.hibernate.Session session = sessionFactory.getCurrentSession();
+//		Transaction tr = session.getTransaction();
+//		tr.begin();
+//		
+//		
+//	}
 	
 	public boolean sendConfirmationEmail(User target){		
 		String emailTo = target.getEmail();
@@ -41,12 +47,7 @@ public class OrderService {
 		
 			/* Returns order with UNCONFIRMED_ORDER_STATUS*/
 		Order order = new OrderDAOImpl().getOrderByUser(target, -1);
-//		org.hibernate.Session hibernateSession = sessionFactory.getCurrentSession();
-//		Transaction tr = hibernateSession.getTransaction();
-//		tr.begin();
-//			Query query = hibernateSession.createQuery("from Order orders where "
-//					+ "user_id ="+target.getId()+" and status = -1");
-//			Order order = (Order) query.list().get(0);
+
 		Properties properties = getProperties();
 		
 		Session session = Session.getDefaultInstance(properties,

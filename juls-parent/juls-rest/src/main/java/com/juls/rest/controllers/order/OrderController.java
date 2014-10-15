@@ -30,6 +30,7 @@ public class OrderController {
 		service.setAdditionalInfo(currentUser, firstName, lastName, address, phone);
 		if(service.sendConfirmationEmail(currentUser))
 			return generateHtmlWithMessage("Your order has been processed, please check your e-mail!");
+
 		else {
 			return generateHtmlWithMessage("Something went wrong, please reload page and make sure for all fields is filled!");
 		}

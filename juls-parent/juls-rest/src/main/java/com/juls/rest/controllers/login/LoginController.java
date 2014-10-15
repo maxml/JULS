@@ -43,6 +43,7 @@ public class LoginController {
 				currentUser.setPassword(currntUser.getPassword());
 				currentUser.setRegStatus(currntUser.getRegStatus());
 				currentUser.setToken(currntUser.getToken());
+				currentUser.setUserCart(currntUser.getUserCart());
 				currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
 	
 				return Redirector.redirectToMain(); 

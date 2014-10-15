@@ -123,6 +123,7 @@ public class CartService {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tr = session.beginTransaction();
 		String id = currentUser.getId();
+		String orderID;
 		
 		try {
 		
@@ -140,7 +141,23 @@ public class CartService {
 //		    if (!(new OrderDAOImpl().insert(order)))
 //		    	new OrderDAOImpl().update(order);
 		   
+
 		    
+		    
+// from other version start				    
+//			Cart cart = currentUser.getUserCart();
+//		    Order order = new Order(currentUser , cart);
+//		    		    
+//		    if (!(isCartInOrders(cart, session)))
+//		      new OrderDAOImpl().insert(order);
+//		    else {
+//		    	new OrderDAOImpl().update(order);
+//		    }
+// from other version end
+		    
+		    
+//		    new OrderDAOImpl().insert(order);
+//		    	Query selectOrder = session.createQuery("from Order WHERE order_id =");
 		    tr.commit();
 			return true;
 			
@@ -156,21 +173,41 @@ public class CartService {
 	 * and return true if some order already using current cart;
 	 */
 	
-	public boolean isCartInOrders(Cart cart) {
+	@SuppressWarnings("unchecked")
+	public boolean isCartInOrders(Cart cart , Session session ) {
 		
-		List <Order> ordersList = new OrderDAOImpl().getAll();
-		System.out.println(ordersList.toString());
-		Iterator<Order> itr = ordersList.listIterator();
-		boolean flag = false;
-		
-			while(itr.hasNext()) {
-				Order actualOrder = itr.next();
-				if (actualOrder.getCurrentCart().getId().equals(cart.getId())){
-					flag = true;
-					}
+		Transaction tr = session.getTransaction();
+		tr.begin();
+		String id = cart.getId();
+		try {
+			Query query = session.createQuery("from Order order "
+					+ "WHERE cart_id = "+id+"");
+			
+			List<Order> cartIdList = (List<Order>) query.list();
+			
+			if (cartIdList.size() > 0) {
+//				Iterator <Order>iter = cartIdList.iterator();
+//				
+//				while (iter.hasNext()) {
+//					Order order = (Order) iter;
+//					order.setStatus(Order.ACCOMPLISHED_ORDER_STATUS);
+//					new OrderDAOImpl().update(order);
+//				}
+				
+				tr.commit();
+				return true;
+				
 			}
-				return flag;
+
+		} catch (Exception ex) {
+			
+			System.out.println(ex.getMessage());
+			tr.rollback();
+			
+		}	
+				tr.commit();
+				return false;
+				
 		}
-		
 }
 	
