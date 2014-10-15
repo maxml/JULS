@@ -3,16 +3,31 @@
 <head>
 <meta charset="UTF-8">
 	<title>Order Page</title>
+	<link href="/static/css/order.css" rel="stylesheet">
 </head>
 <body>
 	<div>
 		<h2>Manage Your Order Here</h2>		
 	</div>	
+	<h3>Order items:</h3>
+	<div id="item-container"></div>
+	<br/>
+	<hr/>
 	<form action="/order/confirm" method = "get">	
-	
-			 <!-- Here must be confirmation button 
-	 		which calls the message & redirects to main page  -->
-	 
+			<h3>Order details:</h3>
+			<strong>First Name:</strong>
+			<input id="fName" type="text" name="firstname" placeholder="Your first name"></input>
+		<br/>
+			<strong>Last Name:</strong>
+			<input id="lName" type="text" name="lastname" placeholder="Your last name"></input>
+		<br/>
+			<strong>Address:</strong>
+			<input id="address" type="text" name="address" placeholder="Your address"></input>
+		<br/>
+			<strong>Phone number:</strong>
+			<input id="pNumber" type="text" name="phonenumber" placeholder="Your phone number"></input>
+		<br/>
+		<hr/>	
 	 	<input type="submit" id="confBut" value="Confirm"></input>
 		</form>
 			<!-- Denying order button -->

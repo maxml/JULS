@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juls.model.User;
+import com.juls.model.UserDetails;
 import com.juls.rest.services.OrderService;
 
 
@@ -19,15 +21,31 @@ public class OrderController {
 	@Autowired
 	User currentUser;
 	
-	@RequestMapping(value = "/confirm", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody String showAllItems() {
-		if(new OrderService().sendConfirmationEmail(currentUser))
-			return "{\"message :\" Your order has been processed,"
-					+ " please check your e-mail!}";
+	@RequestMapping(value = "/confirm", method = RequestMethod.GET, produces = "text/html")
+	public @ResponseBody String showAllItems(@RequestParam("firstname") String firstName,
+											 @RequestParam("lastname") String lastName,
+											 @RequestParam("address") String address,
+											 @RequestParam("phonenumber") String phone) {
+		OrderService service = new OrderService();
+		service.setAdditionalInfo(currentUser, firstName, lastName, address, phone);
+		if(service.sendConfirmationEmail(currentUser))
+			return generateHtmlWithMessage("Your order has been processed, please check your e-mail!");
 		else {
-			return "{\"message:\" Something went wrong, please reload page "
-					+ "and make sure for all fields is filled!}";
+			return generateHtmlWithMessage("Something went wrong, please reload page and make sure for all fields is filled!");
 		}
+	}
+	
+	@RequestMapping(value="/details", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody UserDetails getUser(){
+		OrderService service = new OrderService();
+		return service.getOrderDetails(currentUser);
+	}
+	
+	private String generateHtmlWithMessage(String message) {
+		StringBuilder builder = new StringBuilder("<html><body><h3>");
+		builder.append(message);
+		builder.append("</h3></body></html>");
+		return builder.toString();
 	}
 	
 }

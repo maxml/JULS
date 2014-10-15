@@ -129,13 +129,17 @@ public class CartService {
 			Query query = session.createQuery(" from User user where id = '"+id+"' ");
 		    User user = (User) query.list().get(0);    
 		    Cart cart = user.getUserCart();
+		    OrderDAOImpl orderDAO = new OrderDAOImpl();
 		    
-		    Order order = new Order(user , cart);
-		    		    
+		    Order order = orderDAO.findOrderByCart(cart);
+		    
+		    if(order == null) {
+		    	order = new Order(user , cart);
+		    	new OrderDAOImpl().insert(order);
+		    }
 //		    if (!(new OrderDAOImpl().insert(order)))
 //		    	new OrderDAOImpl().update(order);
-		    
-		    new OrderDAOImpl().insert(order);
+		   
 		    
 		    tr.commit();
 			return true;

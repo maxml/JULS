@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.juls.model.Cart;
 import com.juls.model.Order;
 import com.juls.model.User;
 
@@ -147,6 +148,25 @@ public class OrderDAOImpl implements IDAO<Order> {
 		}
 		tr.commit();
 		return resultOrder;
+	}
+	
+	public Order findOrderByCart(Cart cart) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		Query query = session.createQuery("from Order ordr WHERE cart_id = :id");
+		query.setParameter("id", cart.getId());
+		Order resultOrder = null;
+		try{
+			resultOrder = (Order) query.list().get(0);
+		}
+		catch(Exception ex){
+			System.err.println(ex.getMessage());
+		}
+		tr.commit();
+
+		return resultOrder;
+		
 	}
 
 }

@@ -84,6 +84,15 @@ public class Order implements Serializable{
 	@Column (name = "status")
 	private int orderStatus;
 	
+	@Column(name = "first_name")
+	private String fName;
+	
+	@Column(name = "last_name")
+	private String lName;
+	
+	private String phone;
+	private String address;
+	
 	public void setId(String id) {
 		this.orders_id = id;
 	}
@@ -132,6 +141,38 @@ public class Order implements Serializable{
 		return paymentType;
 	}
 	
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public void setDefaultOrderStatus() {
 		this.orderStatus = UNCONFIRMED_ORDER_STATUS;
 	}

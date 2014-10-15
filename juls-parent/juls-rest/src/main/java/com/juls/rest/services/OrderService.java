@@ -22,6 +22,7 @@ import com.juls.model.CartGood;
 import com.juls.model.Good;
 import com.juls.model.Order;
 import com.juls.model.User;
+import com.juls.model.UserDetails;
 import com.juls.persist.HibernateUtil;
 import com.juls.persist.OrderDAOImpl;
 import com.juls.persist.UserDAOImpl;
@@ -101,5 +102,93 @@ public class OrderService {
 		
 		return properties;
 	}
+
+	public void setAdditionalInfo(User user, String firstName, String lastName,
+			String address, String phone) {
 		
+		org.hibernate.Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		
+		UserDAOImpl userDAO = new UserDAOImpl();
+		OrderDAOImpl orderDAO = new OrderDAOImpl();
+		
+		user = userDAO.getById(user.getId());
+		Order order = orderDAO.findOrderByCart(user.getUserCart());
+		
+		order.setAddress(address);
+		order.setfName(firstName);
+		order.setlName(lastName);
+		order.setPhone(phone);
+		
+		orderDAO.update(order);
+		
+		transaction.commit();
+	}
+
+	public UserDetails getOrderDetails(User user) {
+		org.hibernate.Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		
+		UserDAOImpl userDAO = new UserDAOImpl();
+		OrderDAOImpl orderDAO = new OrderDAOImpl();
+		
+		user = userDAO.getById(user.getId());
+//		Cart cart = user.getUserCart();
+		Order order = orderDAO.getOrderByUser(user);
+		
+		UserDetails details = new UserDetails();
+		if(!fullInitUserDetailsByOrder(details, order))
+			initUserByDefault(details, user.getAdditionalInfo());
+		
+		transaction.commit();
+		
+		return details;
+	}
+		
+	private void initUserByDefault(UserDetails orderDetails, UserDetails userDetails) {
+		if (orderDetails == null || userDetails == null) 
+			return;
+		
+		if(orderDetails.getAddress() == null)
+			orderDetails.setAddress(userDetails.getAddress());
+		if(orderDetails.getFirstName() == null)
+			orderDetails.setFirstName(userDetails.getFirstName());
+		if(orderDetails.getLastName() == null)
+			orderDetails.setLastName(userDetails.getLastName());
+		if(orderDetails.getMobilePhoneNumber() == null)
+			orderDetails.setMobilePhoneNumber(userDetails.getMobilePhoneNumber());
+	}
+
+	private boolean fullInitUserDetailsByOrder(UserDetails userDetails, Order order) {
+		if(userDetails == null || order == null)
+			return false;
+		
+		boolean fullInit = true;
+		String orderFirstName = order.getfName();
+		String orderLastName = order.getlName();
+		String orderPhone = order.getPhone();
+		String orderAddress = order.getAddress();
+		
+		if(orderAddress == null)
+			fullInit = false;
+		else 
+			userDetails.setAddress(orderAddress);
+		
+		if(orderFirstName == null)
+			fullInit = false;
+		else
+			userDetails.setFirstName(orderFirstName);
+		
+		if(orderLastName == null)
+			fullInit = false;
+		else
+			userDetails.setLastName(orderLastName);
+		
+		if(orderPhone == null)
+			fullInit = false;
+		else
+			userDetails.setMobilePhoneNumber(orderPhone);
+		
+		return fullInit;
+	}
 }

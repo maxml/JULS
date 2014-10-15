@@ -40,4 +40,3 @@ $(document).ready(function(){
 		$('#buyBtn').html("<button id='" + btnName + "' data-item-id='" + response["id"] + "' class='" + btnName + "'>Buy</button>");
 	});
 });
-
