@@ -45,7 +45,10 @@ public class OrderController {
 	private String generateHtmlWithMessage(String message) {
 		StringBuilder builder = new StringBuilder("<html><body><h3>");
 		builder.append(message);
-		builder.append("</h3></body></html>");
+		builder.append("</h3><form action='/main.html' method='get' > "
+				+ "<input type='submit' id='backtoMain' value='Back to Main'> </input>"
+				+ " </form></body></html>");
+		builder.append("");
 		return builder.toString();
 	}
 	

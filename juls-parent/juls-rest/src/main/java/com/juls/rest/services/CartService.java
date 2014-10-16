@@ -138,6 +138,7 @@ public class CartService {
 		    	order = new Order(user , cart);
 		    	new OrderDAOImpl().insert(order);
 		    }
+		    
 //		    if (!(new OrderDAOImpl().insert(order)))
 //		    	new OrderDAOImpl().update(order);
 		   
@@ -157,7 +158,6 @@ public class CartService {
 		    
 		    
 //		    new OrderDAOImpl().insert(order);
-//		    	Query selectOrder = session.createQuery("from Order WHERE order_id =");
 		    tr.commit();
 			return true;
 			
