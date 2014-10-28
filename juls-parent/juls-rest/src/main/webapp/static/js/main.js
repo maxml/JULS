@@ -168,6 +168,7 @@ function cutEmailToUserName(email){
 function createSignOutButton() {
 	$('#btn-sign-in-or-up').css("display", "none");
 	$('#btn-sign-out').css("display", "block");
+	
 //	$('#sign-container').html('<button id="btn-sign-out">Sign Out</button>');
 //	$('#sign-container').on('click', '#btn-sign-out', function() {
 //	    signOutAJAX();
@@ -176,6 +177,7 @@ function createSignOutButton() {
 
 function createSignInButton() {
 	$('#btn-sign-in-or-up').css("display", "block");
+	
 //	$('#sign-container').html('<button id="btn-sign-in-or-up">Sign In/Up</button>');
 //	$('#sign-container').on('click', '#btn-sign-in-or-up', function() {
 //		window.location = "/login.html";

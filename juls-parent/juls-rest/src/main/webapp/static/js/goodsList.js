@@ -16,10 +16,12 @@ function showGoods(JSON){
 	var addToCartBtnName = "btn-add-to-cart";
 	for (var i = 0; i < JSON.length; i++){
 		var object = JSON[i];
-		HTMLString += "<li>"+ object["name"] + " " + object["price"]
+		HTMLString += "<li class='separatorRight' style='width:100px'><div class='offer-box'>"+ 
+		object["name"] + " " + object["price"]
 			+ " <button id='" + moreInfoBtnName + "-" + i + "' data-item-id='" + object["id"] + "' class='" + moreInfoBtnName + "'>More info</button>"
 			+ " <button id='" + addToCartBtnName + "-" + i + "' data-item-id='" + object["id"] + "' class='" + addToCartBtnName + "'>Add to cart</button>"
-					   + "</li>";
+					   + "</div></li>";
 	}
+	
 	$('#goodsList').html(HTMLString);
 }
