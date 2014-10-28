@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	createSignOutButton();
 	$.ajax({
 		type : 'GET',
@@ -28,7 +29,7 @@ $(document).ready(function(){
 
 
 $('.mainHeader').click(function(){
-	window.location = "main.html";
+	window.location = "index.html";
 });
 
 var lastCategory = "all";
@@ -165,24 +166,28 @@ function cutEmailToUserName(email){
 };
 
 function createSignOutButton() {
-	$('#sign-container').html('<button id="btn-sign-out">Sign Out</button>');
-	$('#sign-container').on('click', '#btn-sign-out', function() {
-	    signOutAJAX();
-	});
+	$('#btn-sign-in-or-up').css("display", "none");
+	$('#btn-sign-out').css("display", "block");
+//	$('#sign-container').html('<button id="btn-sign-out">Sign Out</button>');
+//	$('#sign-container').on('click', '#btn-sign-out', function() {
+//	    signOutAJAX();
+//	});
 }
 
 function createSignInButton() {
-	$('#sign-container').html('<button id="btn-sign-in-or-up">Sign In/Up</button>');
-	$('#sign-container').on('click', '#btn-sign-in-or-up', function() {
-		window.location = "/login.html";
-	});
+	$('#btn-sign-in-or-up').css("display", "block");
+//	$('#sign-container').html('<button id="btn-sign-in-or-up">Sign In/Up</button>');
+//	$('#sign-container').on('click', '#btn-sign-in-or-up', function() {
+//		window.location = "/login.html";
+//	});
 }
 
 function createUserCartButton() {
-	$('#cart-container').html('<button id="btn-user-cart">My cart</button>');
-	$('#cart-container').on('click', '#btn-user-cart', function() {
-		window.location = "/cart.html";
-	});
+	$('#acrt-container').css("display", "block");
+//	$('#cart-container').html('<button id="btn-user-cart">My cart</button>');
+//	$('#cart-container').on('click', '#btn-user-cart', function() {
+//		window.location = "/cart.html";
+//	});
 }
 
 function signOutAJAX() {

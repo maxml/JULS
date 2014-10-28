@@ -112,11 +112,25 @@
 						</div>
 
 
+						<div class="cart-status-wrapper empty init" id="sign-container">
+							<div><a id="userCabinetLink" href="/profile.html"></a></div>
+
+							<button id="btn-sign-in-or-up"
+								onclick="window.location = '/login.html'">Sign In/Up</button>
+							<button id="btn-sign-out" style="display: none"
+								onclick="signOutAJAX()">Sign Out</button>
+						</div>
+
+
 						<div class="cart-status-wrapper empty init"
 							id="cart-status-wrapper"
-							style="width: 0; margin-top: -25px; margin-right: 220px;">
-							<a href="#" class="cart-status"> <span class="price">корзина
-									пуста</span> <span class="count"> <span class="sprite"
+							style="width: 0; margin-top: 47px; margin-right: 220px;">
+							<div id="cart-container" style="display: none">
+								<button id="btn-user-cart">My cart</button>
+							</div>
+							<a href="cart.html" class="cart-status"> <span class="price"
+								style="width: 50px">корзина пуста</span> <span class="count"
+								style="width: 50px"> <span class="sprite"
 									title="Перейти к корзине"> <i>0</i>
 								</span>
 							</span>
@@ -126,8 +140,6 @@
 
 						<div class="cart-status-header cart-status-wrapper init hidden"
 							id="cart-status-header">
-
-
 
 
 							<style type="text/css">
@@ -243,32 +255,28 @@
 					</div>
 				</div>
 			</header>
-			<div class="main-nav clearfix" style="margin-left: 250px; width: 80%">
+			<div class="main-nav clearfix" style="margin-left: 250px; width: 55%">
+
 				<ul>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link" href="#"> <strong>Авто <span>мото</span></strong>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Fruits</strong>
 							</a>
 							<div class="nav-layer" data-department="automotive"
 								style="left: 0px;"></div>
 						</div>
 					</li>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link"
-								href="http://aukro.ua/otdel/telefony-smartfony"> <strong>Телефоны
-									<span>смартфоны</span>
-							</strong>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Vegetables</strong>
 							</a>
 							<div class="nav-layer" data-department="phones.smartphones"
 								style="left: -20px;"></div>
 						</div>
 					</li>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link"
-								href="http://aukro.ua/otdel/noutbuki-pk-planshety"> <strong>Ноутбуки
-									<span>ПК и планшеты</span>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Crops</span>
 							</strong>
 							</a>
 							<div class="nav-layer" data-department="laptops.pc.tablets"
@@ -276,48 +284,35 @@
 						</div>
 					</li>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link" href="http://aukro.ua/otdel/tehnika"> <strong>Техника</strong>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Cereals</strong>
 							</a>
 							<div class="nav-layer" data-department="electronics"
 								style="left: -20px;"></div>
 						</div>
 					</li>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link" href="http://aukro.ua/otdel/sport-zdorove">
-								<strong>Спорт <span>здоровье</span></strong>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Juice</strong>
 							</a>
 							<div class="nav-layer" data-department="sport.health"
 								style="left: -20px;"></div>
 						</div>
 					</li>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link" href="http://aukro.ua/otdel/moda-krasota">
-								<strong>Мода <span>красота</span></strong>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Salads</strong>
 							</a>
 							<div class="nav-layer" data-department="fashion.beauty"
 								style="left: -62.5px;"></div>
 						</div>
 					</li>
 					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link" href="http://aukro.ua/otdel/detskij-mir">
-								<strong>Детский <span>мир</span></strong>
+						<div class="nav-tab categories">
+							<a class="nav-link" href="#"> <strong>Others</strong>
 							</a>
 							<div class="nav-layer" data-department="baby"
 								style="left: -156.5px;"></div>
-						</div>
-					</li>
-					<li class="nav-tab-container">
-						<div class="nav-tab">
-							<a class="nav-link" href="http://aukro.ua/otdel/dom-dosug"> <strong>Дом
-									<span>досуг</span>
-							</strong>
-							</a>
-							<div class="nav-layer" data-department="home.leisure"
-								style="left: -259px;"></div>
 						</div>
 					</li>
 
@@ -2425,5 +2420,14 @@
 			}
 		})();
 	</script>
+
+
+	<!-- PROGRAM SCRIPTS -->
+	<script type="text/javascript" src="static/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="static/js/goodsList.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+	<script type="text/javascript" src="static/js/showSelectedGood.js"></script>
+	<script type="text/javascript" src="static/js/cart/addToCart.js"></script>
+
 </body>
 </html>
