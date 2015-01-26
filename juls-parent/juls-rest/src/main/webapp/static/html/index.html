@@ -53,23 +53,55 @@
 										autocomplete="off" autofocus="" class="autofocus">
 								</div>
 								
-								<input type="submit" class="search-btn">
+								<select class="search-type-select" name="search_scope">
+									<option value="">все разделы</option>
+									<option value="automotive">Авто мото</option>
+									<option value="phones.smartphones">Телефоны смартфоны</option>
+									<option value="laptops.pc.tablets">Ноутбуки ПК и планшеты</option>
+									<option value="electronics">Техника</option>
+									<option value="sport.health">Спорт здоровье</option>
+									<option value="fashion.beauty">Мода красота</option>
+									<option value="baby">Детский мир</option>
+									<option value="home.leisure">Дом досуг</option>
+									<option value="collections.antique">Коллекции раритеты</option>
+									<option value="special">Спец. проекты</option>
+									<option value="user">пользователи</option>
+									<option value="closed">завершенные</option>
+									<option class="custom-search-type"></option>
+								</select>
+								
+								<input type="submit" value="пошук" class="sprite search-btn">
 								
 								<!-- ALL FORUMS -->
 								
 								<div class="search-type-select">
-									
+									<ul>
+										<li><a class="active" href="#">все разделы</a></li>
+										<li class="department"><a href="#automotive">Авто мото</a></li>
+										<li class="department"><a href="#phones.smartphones">Телефоны смартфоны</a></li>
+										<li class="department"><a href="#laptops.pc.tablets">Ноутбуки ПК и планшеты</a></li>
+										<li class="department"><a href="#electronics">Техника</a></li>
+										<li class="department"><a href="#sport.health">Спорт здоровье</a></li>
+										<li class="department"><a href="#fashion.beauty">Мода красота</a></li>
+										<li class="department"><a href="#baby">Детский мир</a></li>
+										<li class="department"><a href="#home.leisure">Дом досуг</a></li>
+										<li class="department"><a href="#collections.antique">Коллекции раритеты</a></li>
+										<li class="department"><a href="#special">Спец. проекты</a></li>
+										<li class="separator-top"><a href="#user">пользователи</a></li>
+										<li class=""><a href="#closed">завершенные</a></li>
+									</ul>
 									<strong data-filter-id="" title="все разделы">
-										<span id="link1">все разделы</span>
-										
-										<!-- block show/hide -->
-
-										<!--END block show/hide -->
-									</strong>
-									
-								</div>
+										<span>все разделы</span>
+										<i class="sprite"></i>
+									</strong></div>
 								<!-- END ALL FORUMS -->
-
+								
+								<div class="search-layer">
+									<div class="auto-complete-list"></div>
+									<label class="in-description">
+										<input type="checkbox" name="description" value="1">искать также в oписании и параметрах</label>
+								</div>
+																
 							</form>
 						</div>
 
