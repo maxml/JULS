@@ -201,4 +201,13 @@ function signOutAJAX() {
 	}).done(function(response) {
 		$(location).attr('href', response["link"]);		
 	});
+	
+
+}
+
+
+/*HIDE - SHOW BLOCK SEARCH*/
+function slideToggleDiv(){
+    $('#HSBlock').slideToggle(0);
+    $('.btn_allforums').slideToggle(0);
 }

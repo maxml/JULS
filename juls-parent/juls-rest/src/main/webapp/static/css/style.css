@@ -3958,17 +3958,17 @@ html body {
   transition: -moz-transform .1s;
   transition: transform .1s;
 }
+
+/* SEARCH MENU - ALL FORUMS - HIDE/SHOW */
 .main-search div.search-type-select ul {
   position: absolute;
   top: 18px;
   right: -1px;
   z-index: 282;
-  width: 175px;
+  width: 176px;
   margin: 0;
   padding: 31px 10px 10px 10px;
-  overflow: hidden;
-  visibility: hidden;
-  opacity: 0;
+  display: none;
   border: solid #DEDEDE;
   border-width: 0 1px 1px;
   -moz-border-radius: 0 0 4px 4px;
@@ -3988,9 +3988,11 @@ html body {
   list-style: none;
   text-align: left;
 }
+
+/* FONT SIZE FOR ALL FORUMS */
 .main-search div.search-type-select ul li a {
   font-size: 11px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #292929;
   display: block;
   text-decoration: none;
