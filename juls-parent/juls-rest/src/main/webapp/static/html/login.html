@@ -3,24 +3,54 @@
 <head>
 <meta charset="utf-8">
 <title>Sign In</title>
+
+<!-- CSS LINK -->
+<link rel="stylesheet" href="/static/css/login.css">
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+
+
 </head>
 <body>
-	<h3>Please, Sign In!</h3>
-	<form method="post" action="../../login/user" enctype="x-www-form-urlencoded">
-		Email:
-		<br>
-		<input name="email" type="email" placeholder="Email">
-		<br>
-		Password:
-		<br>
-		<input name="password" type="password" placeholder="Password">
-		<br>
-		<input name="remember" type="checkbox" checked>
-		Remember Me
-		<br>
-		<input type="submit" value="Sign in">
-		<input id="reg" onclick="location.href = 'reg.html'" type="button" value="Sign up">
-	</form>
+	
+	<!-- HEADER: LOGO -->
+	<div class="row-fluid headerLogo">
+		<a href="#">
+			<img src="static/img/logo.png" itemprop="logo">
+			<hr>
+		</a>
+	</div>
+	<!-- END HEADER: LOGO -->
+	
+	<!-- SECTION: FORM SIGN IN -->
+	<div class="row-fluid sectionSign">
+		<h3>Please, Sign In!</h3>
+		
+		<form method="post" action="../../login/user" enctype="x-www-form-urlencoded">
+			Email:
+			<br>
+			<input name="email" type="email" placeholder="Email">
+			<br>
+			Password:
+			<br>
+			<input name="password" type="password" placeholder="Password">
+			<br>
+			<input name="remember" type="checkbox" checked>
+			Remember Me
+			<br>
+			<input type="submit" value="Sign in">
+			<input id="reg" onclick="location.href = 'reg.html'" type="button" value="Sign up">
+		</form>
+	</div>
+	<!-- END SECTION: FORM SIGN IN -->
+
+	<!-- FOOTER -->
+	<div class="row-fluid footerLogin">
+	
+	</div>
+	<!--END FOOTER -->
+	
+
+	
 </body>
 <script type="text/javascript" src="static/js/jquery-2.1.1.min.js"></script>
 
