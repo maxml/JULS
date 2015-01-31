@@ -23,29 +23,34 @@
 	
 	<!-- SECTION: FORM SIGN IN -->
 	<div class="row-fluid sectionSign">
-		<h3>Please, Sign In!</h3>
+		<h3>Please sign in</h3>
 		
 		<form method="post" action="../../login/user" enctype="x-www-form-urlencoded">
-			Email:
-			<br>
-			<input name="email" type="email" placeholder="Email">
-			<br>
-			Password:
-			<br>
-			<input name="password" type="password" placeholder="Password">
-			<br>
-			<input name="remember" type="checkbox" checked>
-			Remember Me
-			<br>
-			<input type="submit" value="Sign in">
-			<input id="reg" onclick="location.href = 'reg.html'" type="button" value="Sign up">
+			
+			<!-- Email -->
+			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+			
+			<!-- Password -->
+			<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+			
+			<!-- Checkbox -->
+			<div class="checkbox">
+		        <label>
+		        	<input type="checkbox" name="remember" value="remember-me"> Remember me
+		        </label>
+        	</div>
+			
+			<!-- Button -->
+			<button class="btn btn-lg btn-primary btn-block" id="sig" type="submit" value="Sign in">Sign In</button>
+			<button class="btn btn-lg btn-primary btn-block" id="reg" onclick="location.href = 'reg.html'" type="button" value="Sign up">Sign Up</button>
+			
 		</form>
 	</div>
 	<!-- END SECTION: FORM SIGN IN -->
 
 	<!-- FOOTER -->
 	<div class="row-fluid footerLogin">
-	
+		<hr />
 	</div>
 	<!--END FOOTER -->
 	
