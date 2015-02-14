@@ -106,13 +106,14 @@ table {
 	/* Border & bg clr,  angle*/
 	input#inputEmail.form-control,
 	button.btn.btn-lg.btn-primary.btn-block#sig{
+		position: relative;
 		border-bottom-right-radius: 0;
 		border-bottom-left-radius: 0;
 		margin-bottom: -1px;
 	}
 	
 	input#inputPassword.form-control,
-	button.btn.btn-lg.btn-primary.btn-block#reg{
+	button.btn.btn-lg.btn-primary.btn-block#reg{	
 		border-top-right-radius: 0;
 		border-top-left-radius: 0;
 	}
