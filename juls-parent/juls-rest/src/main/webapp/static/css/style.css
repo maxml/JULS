@@ -2433,10 +2433,7 @@ html body {
   padding: 20px 15px 0;
   margin-top: 28em;
 }
-.main-footer .main-footer-logo {
-  float: left;
-  margin: 0 0 7px;
-}
+
 .main-footer .main-footer-shortcuts {
   float: right;
   padding: 0;
@@ -2473,9 +2470,6 @@ html body {
   }
 }
 @media screen and (max-width: 920px) {
-  .main-footer .main-footer-logo {
-    display: none;
-  }
   .main-footer .main-footer-shortcuts {
     text-align: center;
     display: block;
