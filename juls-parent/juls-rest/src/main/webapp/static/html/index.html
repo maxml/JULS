@@ -34,7 +34,7 @@
 							<i class="icon-bar"></i>
 						</button>
 						
-						<h1 class="logo" style="width: 160px;">
+						<h1 class="logo">
 							<a href="#"><img src="static/img/logo.png" itemprop="logo"></a>
 						</h1>
 						
@@ -64,7 +64,8 @@
 									<strong data-filter-id="" title="все разделы">
 										<span class="btn_allforums" onclick="slideToggleDiv();">все разделы</span>
 										<i onclick="slideToggleDiv();" class="sprite"></i>
-									</strong></div>
+									</strong>
+								</div>
 							<!-- END ALL FORUMS -->
 							</form>
 						</div>
@@ -74,9 +75,10 @@
 							<div>
 								<a id="userCabinetLink" href="/profile.html"></a>
 							</div>
-
-							<button id="btn-sign-in-or-up" style="display: none;" onclick="window.location = '/login.html'">Sign In/Up</button>
-							<button id="btn-sign-out" style="display: none" onclick="signOutAJAX()">Sign Out</button>
+							
+							<!-- BUTTON -->
+							<button class="btn btn-lg btn-primary btn-block" id="btn-sign-in-or-up"  onclick="window.location = '/login.html'">Sign In</button>
+							<button class="btn btn-lg btn-primary btn-block" id="btn-sign-out"  onclick="signOutAJAX()">Sign Out</button>
 						</div>
 
 

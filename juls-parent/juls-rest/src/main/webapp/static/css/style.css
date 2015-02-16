@@ -2185,10 +2185,10 @@ html body {
 .logo {
   position: absolute;
   left: 0;
-  width: 220px;
+  width: 250px;
   padding: 0 20px 0 0;
   margin: 0;
-  height: 54px;
+  height: 90px;
 }
 .logo a {
   display: block;
@@ -3977,125 +3977,14 @@ html body {
   opacity: 1;
   visibility: visible;
 }
-.main-search .search-layer {
-  position: absolute;
-  z-index: 281;
-  left: -1px;
-  right: 49px;
-  top: 46px;
-  border: solid 1px #767676;
-  border-width: 0 1px 1px;
-  -moz-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
-  padding: 0;
-  background: #fff;
-  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.1s linear;
-  transition: 0.1s linear;
-  -webkit-transition-property: opacity, visibility;
-  transition-property: opacity, visibility;
-  -webkit-transform: translate3d(0, 0, 0);
-  text-align: left;
-}
-.main-search .search-layer label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  padding: 5px 0;
-  margin: 0;
-  border: dotted #aaa;
-  -webkit-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  -moz-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  -ms-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  -o-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  border-width: 1px 0 0;
-  font-size: 13px;
-  font-size: 1.3rem;
-  background: #f3f3f3;
-  -moz-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
-  text-transform: lowercase;
-}
-.main-search .search-layer label input {
-  margin: 0 5px 0 13px;
-}
-.main-search .search-layer:after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  content: '';
-  display: block;
-  border: dotted #aaa;
-  -webkit-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  -moz-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  -ms-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  -o-border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  border-image: url(../images/velalayout/16a9a096.border-layer.png) 1 repeat;
-  border-width: 1px 0 0;
-}
-.main-search .search-layer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.main-search .search-layer ul li {
-  padding: 3px 13px 3px 15px;
-  font-size: 13px;
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-.main-search .search-layer ul li:first-child {
-  padding-top: 5px;
-}
-.main-search .search-layer ul li:last-child {
-  padding-bottom: 5px;
-}
-.main-search .search-layer ul li span {
-  color: #5E5E5E;
-  font-weight: bold;
-}
-.main-search .search-layer ul li span strong {
-  font-weight: normal;
-}
-.main-search .search-layer ul li em {
-  padding-left: 5px;
-  color: #A5A5A5;
-  font-style: normal;
-}
-.main-search .search-layer ul li.active {
-  background: #f3f3f3;
-  text-decoration: none;
-}
-.main-search .search-layer ul li.active span {
-  color: #000;
-}
-.main-search .search-layer ul li.active em {
-  color: #858585;
-}
-.main-search .search-layer ul li .remove {
-  float: right;
-}
-.main-search .search-layer ul li .remove span {
-  color: #0083ff;
-  font-weight: normal;
-}
-.main-search .search-layer ul li .remove span:hover {
-  text-decoration: underline;
-}
+
+/* DEL SEARCH LAYER CSS */
+
 .main-search.active {
   -moz-border-radius-bottomleft: 0;
   border-bottom-left-radius: 0;
 }
-.main-search.active .search-layer {
-  opacity: 1;
-  visibility: visible;
-}
+
 .no-cssgradients .main-search div.search-type-select strong {
   background: url(../images/velalayout/7c1f7fde.separator-v-mini.png) 0 50% no-repeat;
 }
@@ -4153,12 +4042,7 @@ html body {
   height: 34px;
   background-position: -60px 5px;
 }
-.sticky .search-bar .search-layer {
-  top: 34px;
-}
-.sticky .search-bar .search-layer label {
-  padding: 5px 4px;
-}
+
 
 @media screen and (max-width: 920px) {
   .full-header .search-bar {
@@ -4231,12 +4115,6 @@ html body {
     height: 34px;
     background-position: -59px 5px;
   }
-  .full-header.sticky .search-bar .search-layer {
-    top: 34px;
-  }
-  .full-header.sticky .search-bar .search-layer label {
-    padding: 5px 4px;
-  }
 }
 @media screen and (max-width: 480px) {
   .full-header .search-bar div.search-type-select {
@@ -4246,12 +4124,7 @@ html body {
     height: 34px;
     background-position: -59px 5px;
   }
-  .full-header .main-search .search-layer {
-    top: 34px;
-  }
-  .full-header .main-search .search-layer label {
-    padding: 5px 4px;
-  }
+ 
   .full-header .main-search .input-text-wrapper {
     padding: 0 6px;
   }
@@ -4268,9 +4141,6 @@ html body {
   }
   .full-header.sticky .search-bar .main-search .input-text-wrapper {
     padding: 0 3px;
-  }
-  .full-header.sticky .search-bar .main-search .search-layer {
-    right: 35px;
   }
 }
 .main-nav {
@@ -8025,7 +7895,58 @@ html body {
 
 
 /* NEW CSS */
-/* 1. FOOTER */
+
+/* BUTTON SIGN IN/OUT */
+
+	button.btn.btn-lg.btn-primary.btn-block{
+		width: 90px;
+		height: 28px;
+		background-color: #505050;
+		font: 1.2em "Helvetica Neue";
+		padding: 1px 0;
+		border-color: gray;
+	}
+	
+	button.btn.btn-lg.btn-primary.btn-block:HOVER{
+		opacity: 0.98;
+	}
+	
+	#btn-sign-in-or-up,
+	#btn-sign-out{
+		position: absolute;
+	}
+	
+	#btn-sign-in-or-up{
+		left: -12em;
+		top: 15px;
+		border-right: 2px solid white;
+	}
+
+	#btn-sign-out{
+		left: -6.7em;
+		top: 10px;
+	}
+	
+	button.btn.btn-lg.btn-primary.btn-block#btn-sign-in-or-up{
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;		
+	}
+	
+	button.btn.btn-lg.btn-primary.btn-block#btn-sign-out{
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;			
+	}
+	
+	button.btn.btn-lg.btn-primary.btn-block#btn-sign-in-or-up:FOCUS,
+	button.btn.btn-lg.btn-primary.btn-block#btn-sign-out:FOCUS{
+		outline: none;
+	}
+
+/* FOOTER */
 
 	/* Main footer additional */
 	.alle-link>span{
@@ -8035,7 +7956,6 @@ html body {
 	.main-footer-additional .alle-link{
 		text-decoration: none;
 	}
-
 
 	/* Footer icon */
 	.main-footer .share{
