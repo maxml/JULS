@@ -1654,7 +1654,9 @@ html body {
   display: none;
 }
 .cart-status-wrapper.empty span.price {
+  position: relative;
   color: #ccc;
+  left: -20px; 
   font-size: 14px;
   font-size: 1.4000000000000001rem;
   font-weight: normal;
@@ -1713,10 +1715,9 @@ html body {
 }
 .cart-status {
   position: relative;
-  right: 0;
   z-index: 281;
   display: block;
-  height: 60px;
+  /* height: 60px; */
   min-width: 160px;
   padding: 2px 5px 0;
   white-space: nowrap;
@@ -1737,6 +1738,7 @@ html body {
 }
 .cart-status > span.count span {
   position: relative;
+  left: -22px;
   display: block;
   width: 46px;
   height: 37px;
