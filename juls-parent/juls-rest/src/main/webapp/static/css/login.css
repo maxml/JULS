@@ -89,9 +89,15 @@ table {
 }
 	
 	/* text login form */
-	.sectionSign h3{
+	.sectionSign .SigRegTxt{
 		margin-top: 5em;
 		font-family: Tahoma;
+		font-size: 24px;
+	}
+	
+	.checkbox label p{
+		font-family: Tahoma;
+		font-size: 1.1em;
 	}
 	
 	/* Size form & btn */
@@ -116,7 +122,8 @@ table {
 		border-top-left-radius: 0;
 	}
 	
-	button.btn.btn-lg.btn-primary.btn-block{
+	button.btn.btn-lg.btn-primary.btn-block#sig,
+	button.btn.btn-lg.btn-primary.btn-block#reg{
 		background-color: #333;
 		border-color: white;
 	}
