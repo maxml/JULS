@@ -80,55 +80,54 @@ table {
 
 /* END  HEADER: LOGO */
 
-/* SECTION SIGN IN FORM */
-.sectionSign{
-	width: 100%;
-	height: auto; /* test size */
-	text-align: center;
-	margin-bottom: 5em;
-}
-	
-	/* text login form */
-	.sectionSign h3{
+/* SECTION REG FORM */
+
+	/* All Section */
+	.SectionReg{
+		width: 100%;
+		height: auto; /* test size */
+		text-align: center;
+		margin-bottom: 5em;
+	}	
+
+	/* Text */
+	.SectionReg h3{
 		margin-top: 5em;
 		font-family: Tahoma;
 	}
 	
+	/* Section RegForm */
+	#RegForm{
+		width: 300px;
+		height: 44px;
+		margin: 0 auto;
+	}
+
 	/* Size form & btn */
-	input#inputEmail.form-control,
-	input#inputPassword.form-control,
+	input#emailReg.form-control,
+	input#PassReg1.form-control,
+	input#PassReg2.form-control,
 	button.btn.btn-lg.btn-primary.btn-block{
 		width: 300px;
 		height: 44px;
 		margin: 0 auto;
 	}
 	
-	/* Border & bg clr,  angle*/
-	input#inputEmail.form-control,
-	button.btn.btn-lg.btn-primary.btn-block#sig{
+	/* Btn style */
+	input#PassReg1.form-control{
 		border-bottom-right-radius: 0;
-		border-bottom-left-radius: 0;
+		border-bottom-left-radius: 0;	
 	}
 	
-	input#inputPassword.form-control,
-	button.btn.btn-lg.btn-primary.btn-block#reg{
+	input#PassReg2.form-control{
 		border-top-right-radius: 0;
-		border-top-left-radius: 0;
+		border-top-left-radius: 0;	
 	}
 	
-	button.btn.btn-lg.btn-primary.btn-block{
+	/* Button style */
+	input.btn.btn-lg.btn-primary.btn-block{
 		background-color: #333;
 		border-color: white;
 	}
 	
-	button.btn.btn-lg.btn-primary.btn-block#sig,
-	button.btn.btn-lg.btn-primary.btn-block#reg{
-		outline: none;
-	}
-	
-	button.btn.btn-lg.btn-primary.btn-block#sig:HOVER,
-	button.btn.btn-lg.btn-primary.btn-block#reg:HOVER{
-		opacity: 0.95;
-	}
-	
-/* END SECTION SIGN IN FORM */
+/* END SECTION REG FORM */

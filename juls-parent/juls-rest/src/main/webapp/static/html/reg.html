@@ -3,21 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <title>JULS</title>
+
+<!-- CSS LINK -->
+<link rel="stylesheet" href="/static/css/reg.css">
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+
 </head>
 <body>
-	<h3>Fill in the registration form to proceed</h3>
-	<form method="post" action="../../new/user" enctype="x-www-form-urlencoded">
-		Email:
-		<br>
-		<input name= "email" type="email" placeholder="Email">
-		<br>
-		Password:
-		<br>
-		<input name= "password1" type="password" placeholder="Password">
-		<br>
-		<input name= "password2" type="password" placeholder="Repeat password">
-		<br>
-		<input type="submit" value="Sign up">
-	</form>
+	
+	<!-- HEADER: LOGO -->
+	<div class="row-fluid headerLogo">
+		<a href="#">
+			<img src="static/img/logo.png" itemprop="logo">
+			<hr>
+		</a>
+	</div>
+	<!-- END HEADER: LOGO -->
+
+	<!-- SECTION REG FORM -->
+	<div class="SectionReg">
+	
+		<h3>Fill in the registration form to proceed</h3>
+		
+		<form id="RegForm" method="post" action="../../new/user" enctype="x-www-form-urlencoded">
+			<input class="form-control" id="emailReg" name= "email" type="email" placeholder="Email">
+			<br>
+			<input class="form-control" id="PassReg1" name= "password1" type="password" placeholder="Password">
+			<input class="form-control" id="PassReg2" name= "password2" type="password" placeholder="Repeat password">
+			<br>
+			<input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up">
+		</form>
+	</div>	
+	<!-- END SECTION REG FORM -->
+	
 </body>
 </html>
