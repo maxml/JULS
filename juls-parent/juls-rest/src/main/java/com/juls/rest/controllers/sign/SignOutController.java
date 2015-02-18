@@ -18,6 +18,6 @@ public class SignOutController {
 	public @ResponseBody String signOut(HttpSession session) {
 		session.invalidate();
 		
-		return "{\"link\":\"http://localhost:8080/main.html\"}";
+		return "{\"link\":\"http://localhost:8080/index.html\"}";
 	}
 }

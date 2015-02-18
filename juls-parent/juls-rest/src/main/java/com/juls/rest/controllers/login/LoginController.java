@@ -46,7 +46,7 @@ public class LoginController {
 				currentUser.setUserCart(currntUser.getUserCart());
 				currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
 	
-				return Redirector.redirectToMain(); 
+				return Redirector.redirectToIndex();
 			}
 			else{
 				return "<html><body><h3>Wrong username or password</h3></body></html>";

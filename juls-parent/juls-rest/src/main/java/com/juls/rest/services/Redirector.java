@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 public class Redirector {
 	
 	private static final String domain = "http://localhost:8080"; 
+	
+	public static String redirectToIndex(){
+		return "redirect:" + domain + "/index.html";
+	}
 			
 	public static String redirectToMain(){
 		return "redirect:" + domain + "/main.html";

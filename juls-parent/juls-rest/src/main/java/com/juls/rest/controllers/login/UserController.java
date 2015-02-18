@@ -43,7 +43,7 @@ public class UserController {
 			User currntUser = new UserDAOImpl().getByEmail(email);
 			currentUser.setPassword(currntUser.getPassword());
 			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());					
-			return Redirector.redirectToMain();
+			return Redirector.redirectToIndex();
 		
 		}			
 		return "Wrong data";

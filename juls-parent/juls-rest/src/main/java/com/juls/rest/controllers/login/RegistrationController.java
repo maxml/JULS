@@ -34,7 +34,7 @@ public class RegistrationController {
 			currentUser.setToken(currntUser.getToken());
 			currentUser.setAdditionalInfo(currntUser.getAdditionalInfo());
 			regsvc.sendConfirmationEmail(currntUser);
-			return Redirector.redirectToMain();
+			return Redirector.redirectToIndex();
 		}
 		else{
 			return "Error";

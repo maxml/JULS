@@ -13,7 +13,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
  
-         <!-- SQL dialect -->
+        <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
  
         <!-- JDBC connection pool (use the built-in) -->
