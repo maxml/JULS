@@ -27,13 +27,14 @@ public class UserDAOImpl implements IDAO<User>{
 
 	public boolean insert(User value) {
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tr = session.beginTransaction();
+		Transaction	tr = session.beginTransaction();
 		try{
 			session.save(value);
 			tr.commit();
 			return true;
 		}
 		catch(Exception ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}

@@ -1,8 +1,14 @@
 package com.juls.model;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -14,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.context.annotation.Scope;
@@ -28,6 +35,11 @@ public class User implements Serializable {
 	
 	public static final int REGISTERED = 1;
 	public static final int UNCONFIRMED = 0;
+	@Transient
+	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Kiev"));
+//	private DateFormat df = new SimpleDateFormat();
+	@Transient
+	private Date timeNow;
 	
 	@Id
 	@Column(nullable = false, unique = true)
@@ -35,6 +47,9 @@ public class User implements Serializable {
 	
 	@Column(nullable = false, unique = true)
 	private String email;
+	
+	@Column(unique = true)
+	private String nickName;
 	
 	@Column(nullable = false)
 	private String password;
@@ -44,6 +59,9 @@ public class User implements Serializable {
 	
 	@Column(unique = true)
 	private String token;
+	
+	@Column(nullable = false)
+	private Date createDate;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn
@@ -57,7 +75,8 @@ public class User implements Serializable {
 	private List<Order> orders;
 	
 	public User(){
-		
+		timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		setCreateDate(timeNow);
 	}
 	
 	public User(String email, String password){
@@ -65,8 +84,26 @@ public class User implements Serializable {
 		setEmail(email);
 		setPassword(password);
 		setRegStatus(UNCONFIRMED);
+		timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		setCreateDate(timeNow);
 	}
 	
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
 	public String getId() {
 		return id;
 	}

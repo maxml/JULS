@@ -33,7 +33,7 @@ public class RegistrationService {
 	}
 	
 	public boolean save(User user){
-		
+		/*TODO handle NullPointerException*/
 		user.setToken(UUID.randomUUID().toString()); //token 4 email verification
 		return new UserDAOImpl().insert(user);
 	}
