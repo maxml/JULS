@@ -7,6 +7,68 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GoodInfo {
 
+		public GoodInfo(){
+			
+		}
+		
+		@Column(name="short_description")
+		private String shortDescription;
+		@Column(name="description")
+		private String description;
+		@Column(name="type")
+		private String type;
+		@Column(name="mass")
+		private String mass;
+		@Column(name="composition")
+		private String composition;
+		@Column(name="usages")
+		private String usage;
+		@Column(name="vendor")
+		private String vendor;
+		
+		public String getVendor() {
+			return vendor;
+		}
+		public void setVendor(String vendor) {
+			this.vendor = vendor;
+		}
+		public String getDescription() {
+			return description;
+		}
+		public void setDescription(String description) {
+			this.description = description;
+		}
+		public String getType() {
+			return type;
+		}
+		public void setType(String type) {
+			this.type = type;
+		}
+		public String getShortDescription() {
+			return shortDescription;
+		}
+		public void setShortDescription(String shortDescription) {
+			this.shortDescription = shortDescription;
+		}
+		public String getUsage() {
+			return usage;
+		}
+		public void setUsage(String usage) {
+			this.usage = usage;
+		}
+		public String getMass() {
+			return mass;
+		}
+		public void setMass(String mass) {
+			this.mass = mass;
+		}
+		public String getComposition() {
+			return composition;
+		}
+		public void setComposition(String composition) {
+			this.composition = composition;
+		}
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -50,43 +112,5 @@ public class GoodInfo {
 			} else if (!type.equals(other.type))
 				return false;
 			return true;
-		}
-
-		public GoodInfo(){
-			
-		}
-		
-		@Column(name="description")
-		private String description;
-		@Column(name="type")
-		private String type;
-		@Column(name="mass")
-		private String mass;
-		@Column(name="composition")
-		private String composition;
-		
-		public String getDescription() {
-			return description;
-		}
-		public void setDescription(String description) {
-			this.description = description;
-		}
-		public String getType() {
-			return type;
-		}
-		public void setType(String type) {
-			this.type = type;
-		}
-		public String getMass() {
-			return mass;
-		}
-		public void setMass(String mass) {
-			this.mass = mass;
-		}
-		public String getComposition() {
-			return composition;
-		}
-		public void setComposition(String composition) {
-			this.composition = composition;
 		}
 }

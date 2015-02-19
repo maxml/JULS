@@ -35,11 +35,6 @@ public class User implements Serializable {
 	
 	public static final int REGISTERED = 1;
 	public static final int UNCONFIRMED = 0;
-	@Transient
-	private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Kiev"));
-//	private DateFormat df = new SimpleDateFormat();
-	@Transient
-	private Date timeNow;
 	
 	@Id
 	@Column(nullable = false, unique = true)
@@ -63,6 +58,9 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private Date createDate;
 	
+	@Transient
+	private Date timeNow;
+		
 	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn
 	private UserDetails additionalInfo;
