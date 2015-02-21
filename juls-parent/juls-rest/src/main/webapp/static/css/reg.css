@@ -25,7 +25,6 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-
 /* HTML5 display-role reset for older browsers */
 
 article, aside, details, figcaption, figure, 
@@ -50,84 +49,96 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 /* end reset browser styles */
 
-
-
 /* HEADER: LOGO */
-.headerLogo{
-	width: 100%;
-	height: 10em;
-}
-
-	.headerLogo img{
-		display: block;
-		margin: 0 auto;
-	}
-	
-	/* Gradient line under the logotype */
-	.headerLogo hr{
-		height: 1px;
-		background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(166,166,166,0.52) 48%, rgba(255,255,255,0) 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(48%,rgba(166,166,166,0.52)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* IE10+ */
-		background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+	.headerLogo{
+		width: 100%;
+		height: 10em;
 	}
 
+		.headerLogo img{
+			display: block;
+			margin: 0 auto;
+		}
+		
+		/* Gradient line under the logotype */
+		.headerLogo hr{
+			height: 1px;
+			background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(166,166,166,0.52) 48%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(48%,rgba(166,166,166,0.52)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* IE10+ */
+			background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(166,166,166,0.52) 48%,rgba(255,255,255,0) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+		}
 /* END  HEADER: LOGO */
 
-/* SECTION REG FORM */
-
-	/* All Section */
+/* SECTION SIGN IN & SECTION REG FORM */
+	.sectionSign,
 	.SectionReg{
 		width: 100%;
 		height: auto; /* test size */
 		text-align: center;
 		margin-bottom: 5em;
-	}	
-
-	/* Text */
-	.SectionReg .SigRegTxt{
-		margin-top: 5em;
-		font-family: Tahoma;
 	}
-	
-	/* Section RegForm */
-	#RegForm{
-		width: 300px;
-		height: 44px;
-		margin: 0 auto;
-	}
-
-	/* Size form & btn */
-	input#emailReg.form-control,
-	input#PassReg1.form-control,
-	input#PassReg2.form-control,
-	button.btn.btn-lg.btn-primary.btn-block{
-		width: 300px;
-		height: 44px;
-		margin: 0 auto;
-	}
-	
-	/* Btn style */
-	input#PassReg1.form-control{
-		border-bottom-right-radius: 0;
-		border-bottom-left-radius: 0;	
-	}
-	
-	input#PassReg2.form-control{
-		border-top-right-radius: 0;
-		border-top-left-radius: 0;	
-	}
-	
-	/* Button style */
-	input.btn.btn-lg.btn-primary.btn-block{
-		background-color: #333;
-		border-color: white;
-	}
-	
-/* END SECTION REG FORM */
+		
+		/* text login form */
+		.sectionSign .SigRegTxt,
+		.SectionReg .SigRegTxt{
+			margin-top: 5em;
+			font-family: Tahoma;
+			font-size: 24px;
+		}
+		
+		.checkbox label p{
+			font-family: Tahoma;
+			font-size: 1.1em;
+		}
+		
+		/* Size form & btn */
+		#RegForm,
+		input#inputEmail.form-control,
+		input#inputPassword.form-control,
+		input#emailReg.form-control,
+		input#PassReg1.form-control,
+		input#PassReg2.form-control,
+		button.btn.btn-lg.btn-primary.btn-block{
+			width: 300px;
+			height: 44px;
+			margin: 0 auto;
+		}
+		
+		/* Border & bg clr,  angle*/
+		input#inputEmail.form-control,
+		input#PassReg1.form-control,
+		button.btn.btn-lg.btn-primary.btn-block#sig{
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		
+		input#inputPassword.form-control,
+		input#PassReg2.form-control,
+		button.btn.btn-lg.btn-primary.btn-block#reg{
+			border-top-right-radius: 0;
+			border-top-left-radius: 0;
+		}
+		
+		input.btn.btn-lg.btn-primary.btn-block,
+		button.btn.btn-lg.btn-primary.btn-block#sig,
+		button.btn.btn-lg.btn-primary.btn-block#reg{
+			background-color: #333;
+			border-color: white;
+		}
+		
+		button.btn.btn-lg.btn-primary.btn-block#sig,
+		button.btn.btn-lg.btn-primary.btn-block#reg{
+			outline: none;
+		}
+		
+		button.btn.btn-lg.btn-primary.btn-block#sig:HOVER,
+		button.btn.btn-lg.btn-primary.btn-block#reg:HOVER{
+			opacity: 0.95;
+		}
+/* END SECTION SIGN IN & SECTION REG FORM */
