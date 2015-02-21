@@ -2472,7 +2472,7 @@ html body {
 }
 
 .main-footer {
-  position: static;
+  position: relative;
   height: auto;
   padding: 0;
   margin: 20px auto 0;

@@ -91,7 +91,7 @@ table {
 	}	
 
 	/* Text */
-	.SectionReg h3{
+	.SectionReg .SigRegTxt{
 		margin-top: 5em;
 		font-family: Tahoma;
 	}
