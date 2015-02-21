@@ -19,3 +19,8 @@ td {
 	
 	border: 1px solid black;
 }
+
+.wrapper-fluid .main-footer{
+	position: relative;
+	padding-top: 10em;
+}
