@@ -3,7 +3,7 @@
 	position: absolute;
 	font: 1em Tahoma;
 	line-height: 1.4;
-	margin: 2% 0 0 22%;
+	padding: 2% 0 0 22%;
 }
 
 table {
@@ -23,4 +23,9 @@ td {
 .wrapper-fluid .main-footer{
 	position: relative;
 	padding-top: 10em;
+}
+
+span.separator-top{
+	margin: 3% 0 0 0;
+	width: 100%;
 }
