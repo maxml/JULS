@@ -24,9 +24,6 @@ import com.juls.persist.HibernateUtil;
 import com.juls.persist.OrderDAOImpl;
 import com.juls.persist.UserDAOImpl;
 
-
-
-
 @Service
 public class OrderService {
 	
