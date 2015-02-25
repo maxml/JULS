@@ -1709,7 +1709,7 @@ html body {
 .cart-status-wrapper.empty span.price {
   position: relative;
   color: #ccc;
-  left: -20px; 
+  left: 8px;
   font-size: 14px;
   font-size: 1.4000000000000001rem;
   font-weight: normal;
@@ -1791,7 +1791,7 @@ html body {
 }
 .cart-status > span.count span {
   position: relative;
-  left: -22px;
+  left: 4px;
   display: block;
   width: 46px;
   height: 37px;
@@ -2472,7 +2472,7 @@ html body {
 }
 
 .main-footer {
-  position: static;
+  position: relative;
   height: auto;
   padding: 0;
   margin: 20px auto 0;
@@ -7974,13 +7974,13 @@ html body {
 	}
 	
 	#btn-sign-in-or-up{
-		left: -12em;
+		left: -10em;
 		top: 15px;
 		border-right: 2px solid white;
 	}
 
 	#btn-sign-out{
-		left: -6.7em;
+		left: -4.7em;
 		top: 10px;
 	}
 	
@@ -8058,7 +8058,19 @@ html body {
 	.soc-ut{
 		background-position: -122px -292px;
 	}
+	
+/* Sign-container */
+#sign-container #userCabinetLink{
+	position: absolute;
+	top: 1.4em;
+	right: 6.5em;
+	font: bold 1em Tahoma;
+	color: black;
+}
 
+#sign-container a{
+	text-decoration: none;
+}
 
 
 

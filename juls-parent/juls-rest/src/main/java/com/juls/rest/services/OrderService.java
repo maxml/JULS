@@ -17,15 +17,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
-import com.juls.model.Cart;
-import com.juls.model.CartGood;
-import com.juls.model.Good;
 import com.juls.model.Order;
 import com.juls.model.User;
 import com.juls.model.UserDetails;
 import com.juls.persist.HibernateUtil;
 import com.juls.persist.OrderDAOImpl;
 import com.juls.persist.UserDAOImpl;
+
+
+
 
 @Service
 public class OrderService {

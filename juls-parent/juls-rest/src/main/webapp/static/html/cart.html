@@ -1,14 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html class=" js no-touch websockets boxshadow cssgradients csstransitions placeholder overthrow-enabled">
+<!--<![endif]-->
 <head>
-<meta charset="ISO-8859-1">
-<title>My Cart</title>
-<link href="/static/css/cart.css" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+	<!-- CSS LINK -->
+	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/cart.css">
+
+
 </head>
-<body>
-	My Cart:
-	<div id="item-container"></div>
+<body class="aukro-ua ">
+
+<!-- HEADER -->
+	<div class="full-header main-header-wrapper" data-header-type="full-header">
+		<div class="wrapper-fluid">
+			<header class="main-header clearfix" id="main-header">
+				<div class="search-bar" id="search-bar">
+					<div class="in clearfix">
+
+						<button class="btn btn-default navigation-toggle">
+							<i class="icon-bar"></i>
+							<i class="icon-bar"></i>
+							<i class="icon-bar"></i>
+						</button>
+
+						<h1 class="logo">
+							<a href="/index.html">
+								<img src="static/img/logo.png" itemprop="logo">
+							</a>
+						</h1>
+
+						<div class="common clearfix">
+							<form action="#" method="get" data-prevent-redirect="0" class="main-search" id="main-search" novalidate="novalidate">
+								<div class="input-text-wrapper">
+									<input id="main-search-text" type="text" placeholder="что ищем?" required="required" value="" autocomplete="off" autofocus="" class="autofocus">
+								</div>
+
+								<!-- BTN SEARCH -->
+								<input type="submit" value="пошук" class="sprite search-btn">
+								<!-- END BTN SEARCH -->
+
+								<!-- ALL FORUMS -->
+								<div class="search-type-select">
+									<ul id="HSBlock">
+										<li><a class="active" href="#">все разделы</a></li>
+										<li class="department"><a href="#fruits">fruits</a></li>
+										<li class="department"><a href="#vegetables">vegetables</a></li>
+										<li class="department"><a href="#crops">crops</a></li>
+										<li class="department"><a href="#cereals">cereals</a></li>
+										<li class="department"><a href="#juice">juice</a></li>
+										<li class="department"><a href="#salads">salads</a></li>
+										<li class="department"><a href="#others">others</a></li>
+									</ul>
+
+									<strong data-filter-id="" title="все разделы">
+										<span class="btn_allforums" onclick="slideToggleDiv();">все разделы</span>
+										<i onclick="slideToggleDiv();" class="sprite"></i>
+									</strong>
+								</div>
+								<!-- END ALL FORUMS -->
+							</form>
+						</div>
+
+
+						<div class="cart-status-wrapper empty init" id="sign-container">
+							<div>
+								<a id="userCabinetLink" href="/profile.html"></a>
+							</div>
+
+							<!-- BUTTON -->
+							<button class="btn btn-lg btn-primary btn-block" id="btn-sign-in-or-up"  onclick="window.location = '/login.html'">Sign In</button>
+							<button class="btn btn-lg btn-primary btn-block" id="btn-sign-out"  onclick="signOutAJAX()">Sign Out</button>
+						</div>
+
+						<div class="cart-status-header cart-status-wrapper init hidden" id="cart-status-header">
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+<!-- END HEADER -->
+
+	<span class="sectionCart separator-top"> 
+		<b>My Cart:</b>
+		<div id="item-container"></div>
+	</span>
+
+<!-- FOOTER -->
+
+	<div class="wrapper-fluid">
+		<footer class="main-footer">
+			
+			<!-- Share social icon -->
+			<div class="separator-top">
+				
+				<span class="share">
+					<a class="social soc-vk" title="Vkontakte" href="#" ></a>
+					<a class="social soc-tw" title="Twitter" href="#" ></a>
+					<a class="social soc-gp" title="Google+" href="#" ></a>
+					<a class="social soc-fb" title="Facebook" href="#" ></a>
+					<a class="social soc-ut" title="YouTube" href="#" ></a>
+				</span>
+				
+			<!-- END Share social icon -->
+			<!-- Footer menu -->
+				<ul class="main-footer-shortcuts">
+					<li>
+						<a href="#"> Новости </a>
+					</li>					
+					<li>
+						<a href="#"> Про Juls </a>
+					</li>
+					<li>
+						<a href="#"> Помощь </a>
+					</li>
+					<li>
+						<a href="#"> Мобильный сайт </a>
+					</li>
+				</ul>
+
+			<!--END Footer menu -->
+			
+				<div class="main-footer-additional">
+					
+					<p>Используя Juls, Вы принимаете 
+						<a class="alle-link" href="#">
+							<span>Соглашение</span>
+						</a>
+					</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+<!-- END FOOTER -->
+
 <script type="text/javascript" src="static/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/main.js"></script>
 <script type="text/javascript" src="static/js/cart/showCartItems.js"></script>
 <script type="text/javascript" src="static/js/cart/changeCartState.js"></script>
 </body>
