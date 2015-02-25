@@ -47,7 +47,7 @@ public class RegistrationController {
 		if (regsrvc.validate(userToken)){
 			if (currentUser.getId().equals(new UserDAOImpl().getByToken(userToken).getId()))
 				currentUser.setRegStatus(User.REGISTERED);
-			return Redirector.redirectToMain();
+			return Redirector.redirectToProfile();
 		}	
 		else
 			return "Error";

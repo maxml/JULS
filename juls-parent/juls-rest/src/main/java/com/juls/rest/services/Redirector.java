@@ -31,6 +31,10 @@ public class Redirector {
 		return "redirect:" + domain + "/order.html";
 	}
 	
+	public static String redirectToProfile(){
+		return "redirect:" + domain + "/profile.html";
+	}
+	
 	public static String getEmailConfirmLink(String token){
 		return domain + "/new/validate/" + token; //TODO: encode, decode token
 	}
