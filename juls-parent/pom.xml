@@ -11,6 +11,7 @@
     <module>juls-model</module>
     <module>juls-security</module>
     <module>juls-rest</module>
+    <module>juls-logger</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

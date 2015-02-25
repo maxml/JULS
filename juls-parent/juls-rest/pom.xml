@@ -37,6 +37,11 @@
         <artifactId>juls-persist</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
+     <dependency>
+      	<groupId>com.juls</groupId>
+        <artifactId>juls-logger</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
     <dependency>
         <groupId>org.codehaus.jackson</groupId>
         <artifactId>jackson-mapper-asl</artifactId>

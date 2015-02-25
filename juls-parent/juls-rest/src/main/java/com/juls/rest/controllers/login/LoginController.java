@@ -54,4 +54,8 @@ public class LoginController {
 		}
 		return "";
     }
+	
+	public User getCurrentUser(){
+		return currentUser;
+	}
 }
